@@ -1,0 +1,12 @@
+Metadata-Version: 2.2
+Name: fastloader
+Version: 0.1
+Summary: A fast data loading library
+Author: Jamil Hasibul
+Requires-Python: >=3.6
+Requires-Dist: pybind11>=2.4.3
+Requires-Dist: numpy
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary

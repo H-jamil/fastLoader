@@ -1,0 +1,13 @@
+setup.py
+fastloader/__init__.py
+fastloader/dataloader.py
+fastloader.egg-info/PKG-INFO
+fastloader.egg-info/SOURCES.txt
+fastloader.egg-info/dependency_links.txt
+fastloader.egg-info/not-zip-safe
+fastloader.egg-info/requires.txt
+fastloader.egg-info/top_level.txt
+fastloader/core/__init__.py
+src/FileSystemBackend.cpp
+src/Prefetcher.cpp
+src/python/bindings.cpp
