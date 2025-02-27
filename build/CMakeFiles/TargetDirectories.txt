@@ -1,0 +1,3 @@
+/home/cc/DistDataLoaderScratch/build/CMakeFiles/test_filesystem_backend.dir
+/home/cc/DistDataLoaderScratch/build/CMakeFiles/edit_cache.dir
+/home/cc/DistDataLoaderScratch/build/CMakeFiles/rebuild_cache.dir
