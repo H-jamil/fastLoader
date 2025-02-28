@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/cc/DistDataLoaderScratch/include
+CXX_INCLUDES = -I/home/cc/DistDataLoaderScratch/include -I/usr/lib/x86_64-linux-gnu/openmpi/include -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -I/home/cc/.pyenv/versions/training_gpu/lib/python3.10/site-packages/torch/include -I/home/cc/.pyenv/versions/training_gpu/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -I/usr/include/opencv4 -I/home/cc/.pyenv/versions/3.10.1/include/python3.10
 
-CXX_FLAGS = -std=gnu++17
+CXX_FLAGS =  -D_GLIBCXX_USE_CXX11_ABI=0 -std=gnu++17
 

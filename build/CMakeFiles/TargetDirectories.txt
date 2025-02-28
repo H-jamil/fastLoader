@@ -1,3 +1,8 @@
 /home/cc/DistDataLoaderScratch/build/CMakeFiles/test_filesystem_backend.dir
+/home/cc/DistDataLoaderScratch/build/CMakeFiles/test_prefetch_solution.dir
 /home/cc/DistDataLoaderScratch/build/CMakeFiles/edit_cache.dir
 /home/cc/DistDataLoaderScratch/build/CMakeFiles/rebuild_cache.dir
+/home/cc/DistDataLoaderScratch/build/CMakeFiles/list_install_components.dir
+/home/cc/DistDataLoaderScratch/build/CMakeFiles/install.dir
+/home/cc/DistDataLoaderScratch/build/CMakeFiles/install/local.dir
+/home/cc/DistDataLoaderScratch/build/CMakeFiles/install/strip.dir

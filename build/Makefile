@@ -85,6 +85,51 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/cc/DistDataLoaderScratch/build/CMakeFiles /home/cc/DistDataLoaderScratch/build//CMakeFiles/progress.marks
@@ -129,12 +174,98 @@ test_filesystem_backend/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_filesystem_backend.dir/build.make CMakeFiles/test_filesystem_backend.dir/build
 .PHONY : test_filesystem_backend/fast
 
+#=============================================================================
+# Target rules for targets named test_prefetch_solution
+
+# Build rule for target.
+test_prefetch_solution: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_prefetch_solution
+.PHONY : test_prefetch_solution
+
+# fast build rule for target.
+test_prefetch_solution/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/build
+.PHONY : test_prefetch_solution/fast
+
+src/distributed/DistributedManager.o: src/distributed/DistributedManager.cpp.o
+.PHONY : src/distributed/DistributedManager.o
+
+# target to build an object file
+src/distributed/DistributedManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/distributed/DistributedManager.cpp.o
+.PHONY : src/distributed/DistributedManager.cpp.o
+
+src/distributed/DistributedManager.i: src/distributed/DistributedManager.cpp.i
+.PHONY : src/distributed/DistributedManager.i
+
+# target to preprocess a source file
+src/distributed/DistributedManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/distributed/DistributedManager.cpp.i
+.PHONY : src/distributed/DistributedManager.cpp.i
+
+src/distributed/DistributedManager.s: src/distributed/DistributedManager.cpp.s
+.PHONY : src/distributed/DistributedManager.s
+
+# target to generate assembly for a file
+src/distributed/DistributedManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/distributed/DistributedManager.cpp.s
+.PHONY : src/distributed/DistributedManager.cpp.s
+
+src/prefetcher/BufferManager.o: src/prefetcher/BufferManager.cpp.o
+.PHONY : src/prefetcher/BufferManager.o
+
+# target to build an object file
+src/prefetcher/BufferManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/prefetcher/BufferManager.cpp.o
+.PHONY : src/prefetcher/BufferManager.cpp.o
+
+src/prefetcher/BufferManager.i: src/prefetcher/BufferManager.cpp.i
+.PHONY : src/prefetcher/BufferManager.i
+
+# target to preprocess a source file
+src/prefetcher/BufferManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/prefetcher/BufferManager.cpp.i
+.PHONY : src/prefetcher/BufferManager.cpp.i
+
+src/prefetcher/BufferManager.s: src/prefetcher/BufferManager.cpp.s
+.PHONY : src/prefetcher/BufferManager.s
+
+# target to generate assembly for a file
+src/prefetcher/BufferManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/prefetcher/BufferManager.cpp.s
+.PHONY : src/prefetcher/BufferManager.cpp.s
+
+src/prefetcher/PrefetchManager.o: src/prefetcher/PrefetchManager.cpp.o
+.PHONY : src/prefetcher/PrefetchManager.o
+
+# target to build an object file
+src/prefetcher/PrefetchManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/prefetcher/PrefetchManager.cpp.o
+.PHONY : src/prefetcher/PrefetchManager.cpp.o
+
+src/prefetcher/PrefetchManager.i: src/prefetcher/PrefetchManager.cpp.i
+.PHONY : src/prefetcher/PrefetchManager.i
+
+# target to preprocess a source file
+src/prefetcher/PrefetchManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/prefetcher/PrefetchManager.cpp.i
+.PHONY : src/prefetcher/PrefetchManager.cpp.i
+
+src/prefetcher/PrefetchManager.s: src/prefetcher/PrefetchManager.cpp.s
+.PHONY : src/prefetcher/PrefetchManager.s
+
+# target to generate assembly for a file
+src/prefetcher/PrefetchManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/prefetcher/PrefetchManager.cpp.s
+.PHONY : src/prefetcher/PrefetchManager.cpp.s
+
 src/storage/FileSystemBacked.o: src/storage/FileSystemBacked.cpp.o
 .PHONY : src/storage/FileSystemBacked.o
 
 # target to build an object file
 src/storage/FileSystemBacked.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_filesystem_backend.dir/build.make CMakeFiles/test_filesystem_backend.dir/src/storage/FileSystemBacked.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/storage/FileSystemBacked.cpp.o
 .PHONY : src/storage/FileSystemBacked.cpp.o
 
 src/storage/FileSystemBacked.i: src/storage/FileSystemBacked.cpp.i
@@ -143,6 +274,7 @@ src/storage/FileSystemBacked.i: src/storage/FileSystemBacked.cpp.i
 # target to preprocess a source file
 src/storage/FileSystemBacked.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_filesystem_backend.dir/build.make CMakeFiles/test_filesystem_backend.dir/src/storage/FileSystemBacked.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/storage/FileSystemBacked.cpp.i
 .PHONY : src/storage/FileSystemBacked.cpp.i
 
 src/storage/FileSystemBacked.s: src/storage/FileSystemBacked.cpp.s
@@ -151,6 +283,7 @@ src/storage/FileSystemBacked.s: src/storage/FileSystemBacked.cpp.s
 # target to generate assembly for a file
 src/storage/FileSystemBacked.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_filesystem_backend.dir/build.make CMakeFiles/test_filesystem_backend.dir/src/storage/FileSystemBacked.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/src/storage/FileSystemBacked.cpp.s
 .PHONY : src/storage/FileSystemBacked.cpp.s
 
 src/storage/test_filesystem_backend.o: src/storage/test_filesystem_backend.cpp.o
@@ -177,6 +310,30 @@ src/storage/test_filesystem_backend.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_filesystem_backend.dir/build.make CMakeFiles/test_filesystem_backend.dir/src/storage/test_filesystem_backend.cpp.s
 .PHONY : src/storage/test_filesystem_backend.cpp.s
 
+test_prefetch_solution.o: test_prefetch_solution.cpp.o
+.PHONY : test_prefetch_solution.o
+
+# target to build an object file
+test_prefetch_solution.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/test_prefetch_solution.cpp.o
+.PHONY : test_prefetch_solution.cpp.o
+
+test_prefetch_solution.i: test_prefetch_solution.cpp.i
+.PHONY : test_prefetch_solution.i
+
+# target to preprocess a source file
+test_prefetch_solution.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/test_prefetch_solution.cpp.i
+.PHONY : test_prefetch_solution.cpp.i
+
+test_prefetch_solution.s: test_prefetch_solution.cpp.s
+.PHONY : test_prefetch_solution.s
+
+# target to generate assembly for a file
+test_prefetch_solution.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/test_prefetch_solution.cpp.s
+.PHONY : test_prefetch_solution.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -184,14 +341,31 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... test_filesystem_backend"
+	@echo "... test_prefetch_solution"
+	@echo "... src/distributed/DistributedManager.o"
+	@echo "... src/distributed/DistributedManager.i"
+	@echo "... src/distributed/DistributedManager.s"
+	@echo "... src/prefetcher/BufferManager.o"
+	@echo "... src/prefetcher/BufferManager.i"
+	@echo "... src/prefetcher/BufferManager.s"
+	@echo "... src/prefetcher/PrefetchManager.o"
+	@echo "... src/prefetcher/PrefetchManager.i"
+	@echo "... src/prefetcher/PrefetchManager.s"
 	@echo "... src/storage/FileSystemBacked.o"
 	@echo "... src/storage/FileSystemBacked.i"
 	@echo "... src/storage/FileSystemBacked.s"
 	@echo "... src/storage/test_filesystem_backend.o"
 	@echo "... src/storage/test_filesystem_backend.i"
 	@echo "... src/storage/test_filesystem_backend.s"
+	@echo "... test_prefetch_solution.o"
+	@echo "... test_prefetch_solution.i"
+	@echo "... test_prefetch_solution.s"
 .PHONY : help
 
 

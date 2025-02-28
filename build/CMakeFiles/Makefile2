@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /home/cc/DistDataLoaderScratch/build
 
 # The main recursive "all" target.
 all: CMakeFiles/test_filesystem_backend.dir/all
+all: CMakeFiles/test_prefetch_solution.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -72,6 +73,7 @@ preinstall:
 
 # The main recursive "clean" target.
 clean: CMakeFiles/test_filesystem_backend.dir/clean
+clean: CMakeFiles/test_prefetch_solution.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -99,6 +101,32 @@ test_filesystem_backend: CMakeFiles/test_filesystem_backend.dir/rule
 CMakeFiles/test_filesystem_backend.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_filesystem_backend.dir/build.make CMakeFiles/test_filesystem_backend.dir/clean
 .PHONY : CMakeFiles/test_filesystem_backend.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_prefetch_solution.dir
+
+# All Build rule for target.
+CMakeFiles/test_prefetch_solution.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cc/DistDataLoaderScratch/build/CMakeFiles --progress-num=4,5,6,7,8,9 "Built target test_prefetch_solution"
+.PHONY : CMakeFiles/test_prefetch_solution.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_prefetch_solution.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cc/DistDataLoaderScratch/build/CMakeFiles 6
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_prefetch_solution.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cc/DistDataLoaderScratch/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_prefetch_solution.dir/rule
+
+# Convenience name for target.
+test_prefetch_solution: CMakeFiles/test_prefetch_solution.dir/rule
+.PHONY : test_prefetch_solution
+
+# clean rule for target.
+CMakeFiles/test_prefetch_solution.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/clean
+.PHONY : CMakeFiles/test_prefetch_solution.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
