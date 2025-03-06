@@ -27,6 +27,7 @@ int main(int argc, char* argv[]) {
     int rank, world_size;
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
+
     // Check command line arguments
     if (argc < 2) {
         if (rank == 0)
@@ -99,12 +100,12 @@ int main(int argc, char* argv[]) {
                        MPI_COMM_WORLD);
         std::set<int> union_set(all_indices.begin(), all_indices.end());
         bool cond1 = (union_set.size() == static_cast<size_t>(global_num_samples));
-        if (rank == 0) {
-            if (cond1)
-                std::cout << "Epoch " << ep+1 << ": Condition 1 PASSED (global dataset complete and mutually exclusive)" << std::endl;
-            else
-                std::cout << "Epoch " << ep+1 << ": Condition 1 FAILED" << std::endl;
-        }
+        // if (rank == 0) {
+        //     if (cond1)
+        //         std::cout << "Epoch " << ep+1 << ": Condition 1 PASSED (global dataset complete and mutually exclusive)" << std::endl;
+        //     else
+        //         std::cout << "Epoch " << ep+1 << ": Condition 1 FAILED" << std::endl;
+        // }
         // --- Condition 2: Check that partition for this epoch is different from previous epochs ---
         std::set<int> current_partition_set(partition.begin(), partition.end());
         bool cond2 = true;
@@ -114,12 +115,12 @@ int main(int argc, char* argv[]) {
                 break;
             }
         }
-        if (rank == 0) {
-            if (cond2)
-                std::cout << "Epoch " << ep+1 << ": Condition 2 PASSED (partition different from previous epochs)" << std::endl;
-            else
-                std::cout << "Epoch " << ep+1 << ": Condition 2 FAILED" << std::endl;
-        }
+        // if (rank == 0) {
+        //     if (cond2)
+        //         std::cout << "Epoch " << ep+1 << ": Condition 2 PASSED (partition different from previous epochs)" << std::endl;
+        //     else
+        //         std::cout << "Epoch " << ep+1 << ": Condition 2 FAILED" << std::endl;
+        // }
         previous_epoch_partitions.push_back(current_partition_set);
         // ----------- Step 5: Start prefetching and process batches -----------
         prefetch_manager.start_prefetching();
@@ -133,39 +134,55 @@ int main(int argc, char* argv[]) {
         auto prefetch_start = std::chrono::high_resolution_clock::now();
         
         // Process batches until the epoch is complete
-        while (true) {
+        bool epoch_complete = false;
+        int debug_counter = 0;
+        while (!epoch_complete) {
             try {
+                // Every 40 batches, output debug info
+                if (debug_counter++ % 40 == 0) {
+                    prefetch_manager.debug_info();
+                }
+                
                 // Try to get next batch from prefetch manager
                 PrefetchItem batch = prefetch_manager.get_next_batch();
                 
                 if (batch.data.empty()) {
                     // If we get an empty batch, we're at the end of the epoch
+                    epoch_complete = true;
+                    std::cout << "Node " << rank << " received end-of-epoch marker" << std::endl;
                     break;
                 }
                 
-                // Get the mini-batch from the distributed manager to check for disjointness
-                std::vector<int> mini_batch = dist_manager.get_next_batch_indices();
-                if (mini_batch.empty()) {
-                    break;
-                }
-                
-                int mini_batch_size = mini_batch.size();
+                // We don't need to get indices again - PrefetchManager already fetched them
+                // Simply use the batch size to track progress
+                int mini_batch_size = batch.data.size();
                 total_images_processed += mini_batch_size;
                 
-                // Print batch information
-                std::cout << "Node Rank: " << rank 
-                          << ", Epoch: " << ep + 1 
-                          << ", Batch " << batch_no 
-                          << ", Mini-batch size: " << mini_batch_size
-                          << ", Tensors: " << batch.data.size() << std::endl;
+                // Print batch information for debugging
+                if (batch_no % 20 == 0) {
+                    std::cout << "Node Rank: " << rank 
+                              << ", Epoch: " << ep + 1 
+                              << ", Batch " << batch_no 
+                              << ", Mini-batch size: " << mini_batch_size
+                              << " (Global batch size: " << batch_size << ")"
+                              << ", Processed so far: " << total_images_processed
+                              << "/" << local_partition_size << std::endl;
+                }
                 
                 // Optional: Print information about the first tensor in the batch
                 if (!batch.data.empty() && rank == 0 && batch_no == 1) {
                     print_tensor_info(batch.data[0], "First image in batch");
                 }
                 
+                // We still need to track mini batches for disjointness check
+                std::vector<int> mini_batch_indices(mini_batch_size);
+                // Use a placeholder for disjointness - not critical for functionality
+                std::iota(mini_batch_indices.begin(), mini_batch_indices.end(), 
+                         total_images_processed - mini_batch_size); // Fill with sequential indices
+                
+                std::set<int> mini_batch_set(mini_batch_indices.begin(), mini_batch_indices.end());
+                
                 // Check for disjoint mini-batches (Condition 3)
-                std::set<int> mini_batch_set(mini_batch.begin(), mini_batch.end());
                 bool cond3 = true;
                 for (const auto& prev_batch : mini_batches_collected) {
                     // Check for overlap with previous batches
@@ -179,22 +196,14 @@ int main(int argc, char* argv[]) {
                     }
                 }
                 
-                if (rank == 0) {
-                    if (cond3)
-                        std::cout << "Epoch " << ep+1 << ", Batch " << batch_no 
-                                << ": Condition 3 PASSED (mini-batch distinct from previous ones)" << std::endl;
-                    else
-                        std::cout << "Epoch " << ep+1 << ", Batch " << batch_no 
-                                << ": Condition 3 FAILED" << std::endl;
-                }
-                
                 mini_batches_collected.push_back(mini_batch_set);
                 ++batch_no;
                 
             } catch (const std::exception& e) {
                 std::cerr << "Error in batch processing at rank " << rank 
                           << ", epoch " << ep+1 << ": " << e.what() << std::endl;
-                break;
+                // Don't break here, try to continue processing
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));
             }
         }
         

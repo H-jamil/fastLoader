@@ -6,16 +6,19 @@ int main(int argc, char* argv[]) {
     MPI_Init(&argc, &argv);
 
     // Define total number of samples and global batch size.
-    const int num_samples = 10; 
-    const int batch_size = 2;     
+    const int num_samples = 55; 
+    const int batch_size = 3;     
 
     // Create an instance of DistributedManager.
     DistributedManager manager(num_samples, batch_size);
 
-    const int num_epochs = 5; // Simulate 5 epochs.
+    const int num_epochs = 2; // Simulate 5 epochs.
     for (int epoch = 0; epoch < num_epochs; ++epoch) {
         // Reset epoch (this shuffles and partitions indices).
         manager.reset_epoch();
+
+        // Print partition info once per epoch
+        manager.print_partition_info();
 
         // Print the partitioned indices for this node in the current epoch.
         const std::vector<int>& partitioned = manager.get_epoch_indices();

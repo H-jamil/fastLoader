@@ -38,9 +38,9 @@ void DistributedManager::shuffle_indices() {
     // Create a global vector of indices.
     std::vector<int> all_indices(num_samples);
     if (is_main_process()) {
-        // Fill indices (here using 1-indexing; adjust if 0-indexing is preferred)
+        // Fill indices using 0-indexing to match typical array indexing (0 to num_samples-1)
         for (int i = 0; i < num_samples; i++) {
-            all_indices[i] = i + 1;
+            all_indices[i] = i;
         }
         std::shuffle(all_indices.begin(), all_indices.end(), rng);
     }
@@ -48,12 +48,14 @@ void DistributedManager::shuffle_indices() {
     MPI_Bcast(all_indices.data(), num_samples, MPI_INT, 0, MPI_COMM_WORLD);
 
     // Partition the indices among processes.
-    // Compute a balanced partition with remainder handled.
     int local_sample_count = num_samples / world_size;
     int remainder = num_samples % world_size;
     int start = rank * local_sample_count + std::min(rank, remainder);
     int count = local_sample_count + (rank < remainder ? 1 : 0);
 
+    // Clear any existing indices first
+    epoch_indices.clear();
+    // Assign the indices for this process
     epoch_indices.assign(all_indices.begin() + start, all_indices.begin() + start + count);
     current_index = 0;
 }
@@ -75,14 +77,15 @@ std::vector<int> DistributedManager::get_next_batch_indices() {
                          epoch_indices.begin() + current_index,
                          epoch_indices.begin() + end);
     
-    // If the batch is smaller than the local batch size, fill it with the last element
-    if (batch_indices.size() < local_batch_size) {
-        int last_element = epoch_indices[end - 1]; // Get the last element
+    // If this is the last batch and it's smaller than local_batch_size,
+    // pad it with the last element
+    if (end == epoch_indices.size() && batch_indices.size() < local_batch_size) {
+        int last_element = batch_indices.back();  // Get the last element
         while (batch_indices.size() < local_batch_size) {
-            batch_indices.push_back(last_element); // Fill with the last element
+            batch_indices.push_back(last_element);
         }
     }
-
+    
     current_index = end; // Update current_index to the end of the batch
     return batch_indices; // Return the batch indices
 }
@@ -101,7 +104,9 @@ int DistributedManager::get_world_size() const {
 }
 
 int DistributedManager::get_local_batch_size() const {
-    return batch_size ;
+    // Return the full global batch size for each node
+    // (don't divide by world_size as we want each node to process batches of the same size)
+    return batch_size;
 }
 
 bool DistributedManager::is_main_process() const {

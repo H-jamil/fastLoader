@@ -1,0 +1,2 @@
+/usr/bin/ar qc libprefetcher_lib.a CMakeFiles/prefetcher_lib.dir/BufferManager.cpp.o CMakeFiles/prefetcher_lib.dir/PrefetchManager.cpp.o
+/usr/bin/ranlib libprefetcher_lib.a

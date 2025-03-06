@@ -4,6 +4,7 @@
 #include <vector>
 #include <random>
 #include <mpi.h>
+#include <iostream>
 
 class DistributedManager {
 public:
@@ -22,6 +23,12 @@ public:
     bool is_main_process() const;
     const std::vector<int>& get_epoch_indices() const { return epoch_indices; }
 
+    // Add a new method for debug printing
+    void print_partition_info() const {
+        std::cout << "Node " << rank << " got " << epoch_indices.size() 
+                  << " indices. First index: " << (epoch_indices.empty() ? -1 : epoch_indices.front())
+                  << ", Last index: " << (epoch_indices.empty() ? -1 : epoch_indices.back()) << std::endl;
+    }
 
 private:
     int rank;

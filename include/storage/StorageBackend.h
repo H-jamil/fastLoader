@@ -6,7 +6,7 @@
 
 struct Sample {
     std::string path;
-    std::string label;
+    int label_index;
     size_t size;
 };
 
@@ -20,6 +20,7 @@ public:
     virtual int get_label_index(int file_id) const = 0;
     virtual const Sample& get_sample(int file_id) const = 0;
     virtual int get_num_classes() const = 0;
+    virtual const std::vector<Sample>& get_samples() const = 0;
 };
 
 #endif

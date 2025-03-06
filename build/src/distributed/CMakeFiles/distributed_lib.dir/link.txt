@@ -1,0 +1,2 @@
+/usr/bin/ar qc libdistributed_lib.a CMakeFiles/distributed_lib.dir/DistributedManager.cpp.o
+/usr/bin/ranlib libdistributed_lib.a

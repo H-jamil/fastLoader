@@ -1,0 +1,2 @@
+/usr/bin/ar qc libstorage_lib.a CMakeFiles/storage_lib.dir/FileSystemBacked.cpp.o
+/usr/bin/ranlib libstorage_lib.a
