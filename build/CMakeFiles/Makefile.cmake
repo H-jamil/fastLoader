@@ -143,6 +143,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.28/Modules/FindPkgConfig.cmake"
   "/usr/share/cmake-3.28/Modules/FindPython.cmake"
   "/usr/share/cmake-3.28/Modules/FindPython/Support.cmake"
+  "/usr/share/cmake-3.28/Modules/FindPython3.cmake"
   "/usr/share/cmake-3.28/Modules/FindThreads.cmake"
   "/usr/share/cmake-3.28/Modules/Internal/CMakeCUDAArchitecturesAll.cmake"
   "/usr/share/cmake-3.28/Modules/Internal/CMakeCUDAArchitecturesNative.cmake"
@@ -188,6 +189,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/test_prefetch_solution.dir/DependInfo.cmake"
+  "CMakeFiles/test_prefetch_cephfs.dir/DependInfo.cmake"
   "src/storage/CMakeFiles/storage_lib.dir/DependInfo.cmake"
   "src/storage/CMakeFiles/test_filesystem_backend.dir/DependInfo.cmake"
   "src/distributed/CMakeFiles/distributed_lib.dir/DependInfo.cmake"

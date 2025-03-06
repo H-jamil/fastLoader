@@ -64,6 +64,7 @@ CMAKE_BINARY_DIR = /home/cc/fastLoader/build
 
 # The main recursive "all" target.
 all: CMakeFiles/test_prefetch_solution.dir/all
+all: CMakeFiles/test_prefetch_cephfs.dir/all
 all: src/storage/all
 all: src/distributed/all
 all: src/prefetcher/all
@@ -77,6 +78,7 @@ preinstall: src/prefetcher/preinstall
 
 # The main recursive "clean" target.
 clean: CMakeFiles/test_prefetch_solution.dir/clean
+clean: CMakeFiles/test_prefetch_cephfs.dir/clean
 clean: src/storage/clean
 clean: src/distributed/clean
 clean: src/prefetcher/clean
@@ -140,7 +142,7 @@ CMakeFiles/test_prefetch_solution.dir/all: src/distributed/CMakeFiles/distribute
 CMakeFiles/test_prefetch_solution.dir/all: src/prefetcher/CMakeFiles/prefetcher_lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/cc/fastLoader/build/CMakeFiles --progress-num=12,13 "Built target test_prefetch_solution"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/cc/fastLoader/build/CMakeFiles --progress-num=14,15 "Built target test_prefetch_solution"
 .PHONY : CMakeFiles/test_prefetch_solution.dir/all
 
 # Build rule for subdir invocation for target.
@@ -158,6 +160,34 @@ test_prefetch_solution: CMakeFiles/test_prefetch_solution.dir/rule
 CMakeFiles/test_prefetch_solution.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_solution.dir/build.make CMakeFiles/test_prefetch_solution.dir/clean
 .PHONY : CMakeFiles/test_prefetch_solution.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_prefetch_cephfs.dir
+
+# All Build rule for target.
+CMakeFiles/test_prefetch_cephfs.dir/all: src/storage/CMakeFiles/storage_lib.dir/all
+CMakeFiles/test_prefetch_cephfs.dir/all: src/distributed/CMakeFiles/distributed_lib.dir/all
+CMakeFiles/test_prefetch_cephfs.dir/all: src/prefetcher/CMakeFiles/prefetcher_lib.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_cephfs.dir/build.make CMakeFiles/test_prefetch_cephfs.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_cephfs.dir/build.make CMakeFiles/test_prefetch_cephfs.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/cc/fastLoader/build/CMakeFiles --progress-num=12,13 "Built target test_prefetch_cephfs"
+.PHONY : CMakeFiles/test_prefetch_cephfs.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_prefetch_cephfs.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cc/fastLoader/build/CMakeFiles 9
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/test_prefetch_cephfs.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/cc/fastLoader/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_prefetch_cephfs.dir/rule
+
+# Convenience name for target.
+test_prefetch_cephfs: CMakeFiles/test_prefetch_cephfs.dir/rule
+.PHONY : test_prefetch_cephfs
+
+# clean rule for target.
+CMakeFiles/test_prefetch_cephfs.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_cephfs.dir/build.make CMakeFiles/test_prefetch_cephfs.dir/clean
+.PHONY : CMakeFiles/test_prefetch_cephfs.dir/clean
 
 #=============================================================================
 # Target rules for target src/storage/CMakeFiles/storage_lib.dir

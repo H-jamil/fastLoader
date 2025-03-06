@@ -175,6 +175,19 @@ test_prefetch_solution/fast:
 .PHONY : test_prefetch_solution/fast
 
 #=============================================================================
+# Target rules for targets named test_prefetch_cephfs
+
+# Build rule for target.
+test_prefetch_cephfs: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_prefetch_cephfs
+.PHONY : test_prefetch_cephfs
+
+# fast build rule for target.
+test_prefetch_cephfs/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_cephfs.dir/build.make CMakeFiles/test_prefetch_cephfs.dir/build
+.PHONY : test_prefetch_cephfs/fast
+
+#=============================================================================
 # Target rules for targets named storage_lib
 
 # Build rule for target.
@@ -239,6 +252,30 @@ prefetcher_lib/fast:
 	$(MAKE) $(MAKESILENT) -f src/prefetcher/CMakeFiles/prefetcher_lib.dir/build.make src/prefetcher/CMakeFiles/prefetcher_lib.dir/build
 .PHONY : prefetcher_lib/fast
 
+test_prefetch_cephfs.o: test_prefetch_cephfs.cpp.o
+.PHONY : test_prefetch_cephfs.o
+
+# target to build an object file
+test_prefetch_cephfs.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_cephfs.dir/build.make CMakeFiles/test_prefetch_cephfs.dir/test_prefetch_cephfs.cpp.o
+.PHONY : test_prefetch_cephfs.cpp.o
+
+test_prefetch_cephfs.i: test_prefetch_cephfs.cpp.i
+.PHONY : test_prefetch_cephfs.i
+
+# target to preprocess a source file
+test_prefetch_cephfs.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_cephfs.dir/build.make CMakeFiles/test_prefetch_cephfs.dir/test_prefetch_cephfs.cpp.i
+.PHONY : test_prefetch_cephfs.cpp.i
+
+test_prefetch_cephfs.s: test_prefetch_cephfs.cpp.s
+.PHONY : test_prefetch_cephfs.s
+
+# target to generate assembly for a file
+test_prefetch_cephfs.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_prefetch_cephfs.dir/build.make CMakeFiles/test_prefetch_cephfs.dir/test_prefetch_cephfs.cpp.s
+.PHONY : test_prefetch_cephfs.cpp.s
+
 test_prefetch_solution.o: test_prefetch_solution.cpp.o
 .PHONY : test_prefetch_solution.o
 
@@ -280,7 +317,11 @@ help:
 	@echo "... storage_lib"
 	@echo "... test_distributed_manager"
 	@echo "... test_filesystem_backend"
+	@echo "... test_prefetch_cephfs"
 	@echo "... test_prefetch_solution"
+	@echo "... test_prefetch_cephfs.o"
+	@echo "... test_prefetch_cephfs.i"
+	@echo "... test_prefetch_cephfs.s"
 	@echo "... test_prefetch_solution.o"
 	@echo "... test_prefetch_solution.i"
 	@echo "... test_prefetch_solution.s"

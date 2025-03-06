@@ -1,4 +1,5 @@
 /home/cc/fastLoader/build/CMakeFiles/test_prefetch_solution.dir
+/home/cc/fastLoader/build/CMakeFiles/test_prefetch_cephfs.dir
 /home/cc/fastLoader/build/CMakeFiles/edit_cache.dir
 /home/cc/fastLoader/build/CMakeFiles/rebuild_cache.dir
 /home/cc/fastLoader/build/CMakeFiles/list_install_components.dir

@@ -11,13 +11,14 @@ namespace py = pybind11;
 PrefetchManager::PrefetchManager(StorageBackend* storage_backend,
                                DistributedManager* dist_manager,
                                size_t prefetch_factor,
-                               int num_workers,
+                               int initial_num_workers,
                                int batch_size)
     : storage_backend(storage_backend),
       dist_manager(dist_manager),
       prefetch_factor(prefetch_factor),
-      num_workers(num_workers),
-      should_stop(false) {
+      num_workers(initial_num_workers),
+      should_stop(false),
+      is_running(false) {
     // Initialize buffer manager with appropriate size
     size_t max_sample_size = 0;
     for (int i = 0; i < storage_backend->get_num_samples(); ++i) {
@@ -31,28 +32,85 @@ PrefetchManager::~PrefetchManager() {
 }
 
 void PrefetchManager::start_prefetching() {
+    if (is_running) return;
+    
     should_stop = false;
+    is_running = true;
     worker_threads.clear();
     
+    std::lock_guard<std::mutex> lock(worker_mutex);
     for (int i = 0; i < num_workers; ++i) {
         worker_threads.emplace_back(&PrefetchManager::prefetch_worker, this);
     }
 }
 
 void PrefetchManager::stop_prefetching() {
+    if (!is_running) return;
+    
     should_stop = true;
+    is_running = false;
     queue_not_empty.notify_all();
     queue_not_full.notify_all();
     
+    cleanup_workers();
+    
+    // Clear the queue
+    std::queue<PrefetchItem>().swap(prefetch_queue);
+}
+
+void PrefetchManager::set_num_workers(int new_num_workers) {
+    if (new_num_workers <= 0) {
+        throw std::invalid_argument("Number of workers must be positive");
+    }
+    
+    if (!is_running) {
+        num_workers = new_num_workers;
+        return;
+    }
+    
+    adjust_worker_count(new_num_workers);
+}
+
+void PrefetchManager::adjust_worker_count(int new_count) {
+    std::lock_guard<std::mutex> lock(worker_mutex);
+    
+    if (new_count > num_workers) {
+        // Add new workers
+        for (int i = num_workers; i < new_count; ++i) {
+            worker_threads.emplace_back(&PrefetchManager::prefetch_worker, this);
+        }
+    } else if (new_count < num_workers) {
+        // Remove workers
+        should_stop = true;
+        queue_not_empty.notify_all();
+        queue_not_full.notify_all();
+        
+        for (auto& thread : worker_threads) {
+            if (thread.joinable()) {
+                thread.join();
+            }
+        }
+        
+        worker_threads.clear();
+        should_stop = false;
+        
+        // Start new workers
+        for (int i = 0; i < new_count; ++i) {
+            worker_threads.emplace_back(&PrefetchManager::prefetch_worker, this);
+        }
+    }
+    
+    num_workers = new_count;
+}
+
+void PrefetchManager::cleanup_workers() {
+    std::lock_guard<std::mutex> lock(worker_mutex);
     for (auto& thread : worker_threads) {
         if (thread.joinable()) {
             thread.join();
         }
     }
     worker_threads.clear();
-    
-    // Clear the queue
-    std::queue<PrefetchItem>().swap(prefetch_queue);
 }
 
 void PrefetchManager::prefetch_worker() {
@@ -182,11 +240,35 @@ py::object PrefetchManager::__next__() {
     }
 }
 
+void PrefetchManager::set_prefetch_factor(size_t new_factor) {
+    if (new_factor == 0) {
+        throw std::invalid_argument("Prefetch factor must be positive");
+    }
+    prefetch_factor = new_factor;
+}
+
+size_t PrefetchManager::get_prefetch_factor() const {
+    return prefetch_factor;
+}
+
+int PrefetchManager::get_num_workers() const {
+    return num_workers;
+}
+
+size_t PrefetchManager::get_queue_size() const {
+    std::lock_guard<std::mutex> lock(queue_mutex);
+    return prefetch_queue.size();
+}
+
+bool PrefetchManager::is_prefetching() const {
+    return is_running;
+}
+
 void PrefetchManager::debug_info() const {
     std::cout << "PrefetchManager Debug Info:" << std::endl;
-    std::cout << " - Queue size: " << prefetch_queue.size() << std::endl;
+    std::cout << " - Queue size: " << get_queue_size() << std::endl;
     std::cout << " - Prefetch factor: " << prefetch_factor << std::endl;
     std::cout << " - Number of workers: " << num_workers << std::endl;
-    std::cout << " - Worker threads: " << worker_threads.size() << std::endl;
+    std::cout << " - Is running: " << (is_running ? "true" : "false") << std::endl;
     std::cout << " - Should stop: " << (should_stop ? "true" : "false") << std::endl;
 }

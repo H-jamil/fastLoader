@@ -5,6 +5,9 @@ project(FastLoader)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# Find Python
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+
 # Get Python include paths from the active virtual environment
 execute_process(
     COMMAND python3 -c "import sysconfig; print(sysconfig.get_path('include'))"
@@ -37,7 +40,7 @@ target_link_libraries(test_prefetch_solution PRIVATE
     ${MPI_LIBRARIES} 
     ${TORCH_LIBRARIES} 
     ${OpenCV_LIBS} 
-    python3.10
+    Python3::Python
     prefetcher_lib
     storage_lib
     distributed_lib)
@@ -53,3 +56,23 @@ install(TARGETS test_prefetch_solution
 add_subdirectory(src/storage)
 add_subdirectory(src/distributed)
 add_subdirectory(src/prefetcher)
+
+# Add test_prefetch_cephfs executable
+add_executable(test_prefetch_cephfs test_prefetch_cephfs.cpp)
+target_include_directories(test_prefetch_cephfs PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include ${PYTHON_INCLUDE_DIRS})
+target_link_libraries(test_prefetch_cephfs
+    PRIVATE
+    ${MPI_LIBRARIES}
+    ${TORCH_LIBRARIES}
+    ${OpenCV_LIBS}
+    Python3::Python
+    prefetcher_lib
+    storage_lib
+    distributed_lib)
+
+# Make sure we install the binaries to a known location
+install(TARGETS test_prefetch_cephfs
+        RUNTIME DESTINATION bin)
+
+# Add test_prefetch_cephfs to the test targets
+add_test(NAME test_prefetch_cephfs COMMAND test_prefetch_cephfs)
