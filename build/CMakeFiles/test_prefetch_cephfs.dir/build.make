@@ -134,7 +134,7 @@ test_prefetch_cephfs: /usr/lib/x86_64-linux-gnu/libopencv_viz.so.4.6.0
 test_prefetch_cephfs: /usr/lib/x86_64-linux-gnu/libopencv_wechat_qrcode.so.4.6.0
 test_prefetch_cephfs: /usr/lib/x86_64-linux-gnu/libopencv_xobjdetect.so.4.6.0
 test_prefetch_cephfs: /usr/lib/x86_64-linux-gnu/libopencv_xphoto.so.4.6.0
-test_prefetch_cephfs: /home/cc/.pyenv/versions/3.10.1/lib/libpython3.10.so
+test_prefetch_cephfs: /usr/lib/x86_64-linux-gnu/libpython3.12.so
 test_prefetch_cephfs: src/prefetcher/libprefetcher_lib.a
 test_prefetch_cephfs: src/storage/libstorage_lib.a
 test_prefetch_cephfs: src/distributed/libdistributed_lib.a

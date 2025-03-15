@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = -DUSE_C10D_GLOO -DUSE_C10D_NCCL -DUSE_DISTRIBUTED -DUSE_RPC -DUSE_TENSORPIPE
 
-CXX_INCLUDES = -I/home/cc/fastLoader/include -I/usr/lib/x86_64-linux-gnu/openmpi/include -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -isystem /home/cc/.pyenv/versions/training_gpu/lib/python3.10/site-packages/torch/include -isystem /home/cc/.pyenv/versions/training_gpu/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -isystem /usr/include/opencv4 -isystem /home/cc/.pyenv/versions/3.10.1/include/python3.10 -isystem /usr/local/cuda/include
+CXX_INCLUDES = -I/home/cc/fastLoader/include -I/usr/lib/x86_64-linux-gnu/openmpi/include -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -I/home/cc/.pyenv/versions/3.10.1/include/python3.10 -isystem /home/cc/.pyenv/versions/training_gpu/lib/python3.10/site-packages/torch/include -isystem /home/cc/.pyenv/versions/training_gpu/lib/python3.10/site-packages/torch/include/torch/csrc/api/include -isystem /usr/include/opencv4 -isystem /usr/local/cuda/include -isystem /usr/include/python3.12
 
 CXX_FLAGS =  -D_GLIBCXX_USE_CXX11_ABI=1 -std=gnu++17 -D_GLIBCXX_USE_CXX11_ABI=1
 

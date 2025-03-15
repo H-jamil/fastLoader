@@ -162,9 +162,6 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 //Path to a program.
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
-//No help, variable specified on the command line.
-CMAKE_PREFIX_PATH:UNINITIALIZED=/home/cc/.pyenv/versions/training_gpu/lib/python3.10/site-packages/torch
-
 //Value Computed by CMake
 CMAKE_PROJECT_DESCRIPTION:STATIC=
 
@@ -992,7 +989,7 @@ FIND_PACKAGE_MESSAGE_DETAILS_OpenCV:INTERNAL=[/usr][v4.6.0()]
 //Details about finding Python
 FIND_PACKAGE_MESSAGE_DETAILS_Python:INTERNAL=[/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/bin/python3][cfound components: Interpreter ][v3.10.1()]
 //Details about finding Python3
-FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/bin/python3][/home/cc/.pyenv/versions/3.10.1/include/python3.10][/home/cc/.pyenv/versions/3.10.1/lib/libpython3.10.so][cfound components: Interpreter Development Development.Module Development.Embed ][v3.10.1()]
+FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/home/cc/.pyenv/shims/python3][/usr/include/python3.12][/usr/lib/x86_64-linux-gnu/libpython3.12.so][cfound components: Interpreter Development Development.Module Development.Embed ][v3.10.1()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding Torch
@@ -1059,19 +1056,21 @@ PKG_CONFIG_EXECUTABLE-ADVANCED:INTERNAL=1
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //Compiler reason failure
 _Python3_Compiler_REASON_FAILURE:INTERNAL=
-_Python3_DEVELOPMENT_EMBED_SIGNATURE:INTERNAL=8b7b265c97187e90e8e0dc758023f0c1
-_Python3_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=c14799e7ac04645d259b028f1d718c8e
+_Python3_DEVELOPMENT_EMBED_SIGNATURE:INTERNAL=ca5d01059675c54b1df9ae9ce33468c1
+_Python3_DEVELOPMENT_MODULE_SIGNATURE:INTERNAL=95a6b3a905b31a053078ff046e537c6d
 //Development reason failure
 _Python3_Development_REASON_FAILURE:INTERNAL=
 //Path to a program.
-_Python3_EXECUTABLE:INTERNAL=/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/bin/python3
+_Python3_EXECUTABLE:INTERNAL=/home/cc/.pyenv/shims/python3
 //Path to a file.
-_Python3_INCLUDE_DIR:INTERNAL=/home/cc/.pyenv/versions/3.10.1/include/python3.10
+_Python3_INCLUDE_DIR:INTERNAL=/usr/include/python3.12
 //Python3 Properties
-_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;10;1;64;;cpython-310-x86_64-linux-gnu;abi3;/home/cc/.pyenv/versions/3.10.1/lib/python3.10;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages
-_Python3_INTERPRETER_SIGNATURE:INTERNAL=a9009fa77f4f4808b8d592c4e1b6e46a
+_Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;12;3;64;;cpython-312-x86_64-linux-gnu;abi3;/usr/lib/python3.12;/usr/lib/python3.12;/usr/local/lib/python3.12/dist-packages;/usr/local/lib/python3.12/dist-packages
+_Python3_INTERPRETER_SIGNATURE:INTERNAL=d844138722ce9f820321339a1b1a1af7
+//Interpreter reason failure
+_Python3_Interpreter_REASON_FAILURE:INTERNAL=
 //Path to a library.
-_Python3_LIBRARY_RELEASE:INTERNAL=/home/cc/.pyenv/versions/3.10.1/lib/libpython3.10.so
+_Python3_LIBRARY_RELEASE:INTERNAL=/usr/lib/x86_64-linux-gnu/libpython3.12.so
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
 //Compiler reason failure

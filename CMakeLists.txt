@@ -22,6 +22,17 @@ execute_process(
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
+# Automatically detect PyTorch path
+execute_process(
+    COMMAND python3 -c "import torch; print(torch.__path__[0])"
+    OUTPUT_VARIABLE TORCH_PATH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+# Set CMAKE_PREFIX_PATH to include the PyTorch path
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} ${TORCH_PATH})
+message(STATUS "Using PyTorch from: ${TORCH_PATH}")
+
 # Find required packages
 find_package(MPI REQUIRED)
 find_package(Torch REQUIRED)
