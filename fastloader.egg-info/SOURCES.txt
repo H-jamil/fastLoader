@@ -1,0 +1,8 @@
+README.md
+setup.py
+fastloader.egg-info/PKG-INFO
+fastloader.egg-info/SOURCES.txt
+fastloader.egg-info/dependency_links.txt
+fastloader.egg-info/not-zip-safe
+fastloader.egg-info/requires.txt
+fastloader.egg-info/top_level.txt

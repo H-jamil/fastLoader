@@ -7,10 +7,11 @@ target_include_directories(prefetcher_lib PUBLIC
     ${CMAKE_SOURCE_DIR}/include
 )
 
-# Set C++17 as the standard
+# Set C++17 as the standard and enable position-independent code
 set_target_properties(prefetcher_lib PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
+    POSITION_INDEPENDENT_CODE ON
 )
 
 # Install the library

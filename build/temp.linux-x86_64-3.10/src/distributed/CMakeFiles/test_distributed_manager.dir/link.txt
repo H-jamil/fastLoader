@@ -1,0 +1,1 @@
+/usr/bin/c++ -DVERSION_INFO=\"0.1.0\" -D_GLIBCXX_USE_CXX11_ABI=1 -O3 -DNDEBUG CMakeFiles/test_distributed_manager.dir/test_distributed_manager.cpp.o -o test_distributed_manager   -L/home/cc/.pyenv/versions/3.10.1/lib  -Wl,-rpath,"\$ORIGIN" libdistributed_lib.a /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 

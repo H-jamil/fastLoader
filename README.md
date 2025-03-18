@@ -1,0 +1,86 @@
+# FastLoader
+
+A high-performance data loading library with adaptive prefetching, providing Python bindings to our C++ implementation.
+
+## Features
+
+- High-performance prefetching of data from remote storage
+- Seamless integration with PyTorch
+- Dynamic adjustment of worker threads at runtime
+- Distributed training support with MPI
+
+## Installation
+
+### Requirements
+
+- C++17 compatible compiler
+- CMake >= 3.10
+- PyTorch >= 1.7.0
+- MPI implementation (OpenMPI, MPICH, etc.)
+- OpenCV
+
+### Install from source
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/fastloader.git
+cd fastloader
+
+# Install with pip
+pip install .
+```
+
+### Install on multiple machines
+
+To install on multiple machines for distributed training:
+
+1. Clone the repository on all machines
+2. Install with pip on each machine
+3. Ensure MPI is properly configured for cross-machine communication
+
+## Usage
+
+Here's a simple example of using FastLoader:
+
+```python
+import torch
+from fastloader import Prefetcher
+
+# Initialize prefetcher
+prefetcher = Prefetcher()
+prefetcher.initialize(
+    data_path="/path/to/dataset",
+    batch_size=32,
+    num_workers=4,
+    prefetch_factor=2
+)
+
+# Start prefetching
+prefetcher.start_prefetching()
+
+# Process batches
+for i in range(10):  # Process 10 batches
+    data, labels = prefetcher.get_next_batch()
+    if data is None:  # End of epoch
+        break
+    
+    # Process the batch (data and labels are PyTorch tensors)
+    print(f"Batch {i}: data shape = {data.shape}, labels shape = {labels.shape}")
+    
+    # Example of dynamically adjusting workers
+    if i == 5:
+        prefetcher.set_num_workers(8)  # Increase workers mid-epoch
+
+# Stop prefetching
+prefetcher.stop_prefetching()
+```
+
+For distributed training, run with MPI:
+
+```bash
+mpirun -np 2 python your_script.py
+```
+
+## License
+
+[MIT License](LICENSE) 

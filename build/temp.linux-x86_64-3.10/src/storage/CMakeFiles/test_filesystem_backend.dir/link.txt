@@ -1,0 +1,1 @@
+/usr/bin/c++ -DVERSION_INFO=\"0.1.0\" -D_GLIBCXX_USE_CXX11_ABI=1 -O3 -DNDEBUG CMakeFiles/test_filesystem_backend.dir/test_filesystem_backend.cpp.o -o test_filesystem_backend   -L/home/cc/.pyenv/versions/3.10.1/lib  -Wl,-rpath,"\$ORIGIN" libstorage_lib.a 

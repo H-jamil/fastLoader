@@ -12,10 +12,11 @@ if(CMAKE_CXX_STANDARD_LIBRARIES MATCHES "stdc\\+\\+fs")
     target_link_libraries(storage_lib PUBLIC stdc++fs)
 endif()
 
-# Set C++17 as the standard
+# Set C++17 as the standard and enable position-independent code
 set_target_properties(storage_lib PROPERTIES
     CXX_STANDARD 17
     CXX_STANDARD_REQUIRED ON
+    POSITION_INDEPENDENT_CODE ON
 )
 
 # Create test executable
