@@ -1,0 +1,22 @@
+# Ignore JSON logs
+*.json
+
+# Ignore Python bytecode
+*.pyc
+__pycache__/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore temporary files
+*.tmp
+*.swp
+
+*.o
+pytorch_profiler_logs/*.json
+profiler_logs/*.json
