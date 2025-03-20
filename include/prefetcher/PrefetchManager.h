@@ -27,7 +27,9 @@ public:
                    DistributedManager* dist_manager,
                    size_t prefetch_factor = 2,
                    int initial_num_workers = 2,
-                   int batch_size = 32);
+                   int batch_size = 32,
+                   bool enable_preprocessing = false,
+                   std::pair<int, int> target_size = {224, 224});
     ~PrefetchManager();
 
     // Core functionality
@@ -44,6 +46,11 @@ public:
     void set_prefetch_factor(size_t new_factor);
     size_t get_prefetch_factor() const;
     
+    // Preprocessing controls
+    void set_preprocessing(bool enable, std::pair<int, int> target_size = {224, 224});
+    bool is_preprocessing_enabled() const;
+    std::pair<int, int> get_target_size() const;
+    
     // Debug and monitoring
     void debug_info() const;
     size_t get_queue_size() const;
@@ -52,6 +59,7 @@ public:
 private:
     void prefetch_worker();
     torch::Tensor load_image(int idx);
+    torch::Tensor preprocess_tensor(const torch::Tensor& tensor);
     void adjust_worker_count(int new_count);
     void cleanup_workers();
 
@@ -63,6 +71,11 @@ private:
     std::atomic<int> num_workers;
     std::atomic<bool> should_stop;
     std::atomic<bool> is_running;
+    
+    // Preprocessing options
+    std::atomic<bool> preprocessing_enabled;
+    std::pair<int, int> preprocessing_target_size;
+    mutable std::mutex preprocessing_mutex;
     
     std::vector<std::thread> worker_threads;
     mutable std::mutex worker_mutex;

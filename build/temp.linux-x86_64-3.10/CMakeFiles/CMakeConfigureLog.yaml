@@ -1546,3 +1546,735 @@ events:
         5.2 
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-JEVkg7"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-JEVkg7"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-JEVkg7'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_70b85/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_70b85.dir/build.make CMakeFiles/cmTC_70b85.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-JEVkg7'
+        Building C object CMakeFiles/cmTC_70b85.dir/test_mpi.c.o
+        /usr/bin/cc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -fPIE -o CMakeFiles/cmTC_70b85.dir/test_mpi.c.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-JEVkg7/test_mpi.c
+        Linking C executable cmTC_70b85
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_70b85.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_70b85.dir/test_mpi.c.o -o cmTC_70b85  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-JEVkg7'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-FAW9C0"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-FAW9C0"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-FAW9C0'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_91b82/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_91b82.dir/build.make CMakeFiles/cmTC_91b82.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-FAW9C0'
+        Building CXX object CMakeFiles/cmTC_91b82.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_91b82.dir/test_mpi.cpp.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-FAW9C0/test_mpi.cpp
+        Linking CXX executable cmTC_91b82
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_91b82.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_91b82.dir/test_mpi.cpp.o -o cmTC_91b82  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-FAW9C0'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1672 (_MPI_try_staged_settings)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode MPICXX"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-VyKU7g"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-VyKU7g"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_MPICXX"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-VyKU7g'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f6b4f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f6b4f.dir/build.make CMakeFiles/cmTC_f6b4f.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-VyKU7g'
+        Building CXX object CMakeFiles/cmTC_f6b4f.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_f6b4f.dir/test_mpi.cpp.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-VyKU7g/test_mpi.cpp
+        Linking CXX executable cmTC_f6b4f
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f6b4f.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_f6b4f.dir/test_mpi.cpp.o -o cmTC_f6b4f  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-VyKU7g'
+        
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:99 (try_run)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:69 (find_package)"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1f700/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1f700.dir/build.make CMakeFiles/cmTC_1f700.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_1f700.dir/detect_cuda_version.cc.o
+        /usr/bin/c++  -I/usr/local/cuda/include -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_1f700.dir/detect_cuda_version.cc.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/detect_cuda_version.cc
+        Linking CXX executable cmTC_1f700
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1f700.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_1f700.dir/detect_cuda_version.cc.o -o cmTC_1f700  -Wl,-rpath,/usr/local/cuda/lib64 /usr/local/cuda/lib64/libcudart.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        12.6
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:120 (try_run)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:180 (CUDA_DETECT_INSTALLED_GPUS)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/utils.cmake:344 (cuda_select_nvcc_arch_flags)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:331 (torch_cuda_get_nvcc_gencode_flag)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:69 (find_package)"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CUDA_FLAGS: ""
+      CMAKE_CUDA_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_81d64/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_81d64.dir/build.make CMakeFiles/cmTC_81d64.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        Building CUDA object CMakeFiles/cmTC_81d64.dir/detect_cuda_compute_capabilities.cu.o
+        /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler   -std=c++17 -Xcompiler=-fPIE -MD -MT CMakeFiles/cmTC_81d64.dir/detect_cuda_compute_capabilities.cu.o -MF CMakeFiles/cmTC_81d64.dir/detect_cuda_compute_capabilities.cu.o.d -x cu -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/detect_cuda_compute_capabilities.cu -o CMakeFiles/cmTC_81d64.dir/detect_cuda_compute_capabilities.cu.o
+        Linking CUDA executable cmTC_81d64
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81d64.dir/link.txt --verbose=1
+        /usr/bin/g++ @CMakeFiles/cmTC_81d64.dir/objects1.rsp -o cmTC_81d64 @CMakeFiles/cmTC_81d64.dir/linkLibs.rsp -L"/usr/local/cuda/targets/x86_64-linux/lib/stubs" -L"/usr/local/cuda/targets/x86_64-linux/lib"
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        5.2 
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-TplFe3"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-TplFe3"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-TplFe3'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_12362/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_12362.dir/build.make CMakeFiles/cmTC_12362.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-TplFe3'
+        Building C object CMakeFiles/cmTC_12362.dir/test_mpi.c.o
+        /usr/bin/cc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -fPIE -o CMakeFiles/cmTC_12362.dir/test_mpi.c.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-TplFe3/test_mpi.c
+        Linking C executable cmTC_12362
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_12362.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_12362.dir/test_mpi.c.o -o cmTC_12362  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-TplFe3'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-0GUmG2"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-0GUmG2"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-0GUmG2'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_9f234/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_9f234.dir/build.make CMakeFiles/cmTC_9f234.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-0GUmG2'
+        Building CXX object CMakeFiles/cmTC_9f234.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_9f234.dir/test_mpi.cpp.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-0GUmG2/test_mpi.cpp
+        Linking CXX executable cmTC_9f234
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9f234.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_9f234.dir/test_mpi.cpp.o -o cmTC_9f234  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-0GUmG2'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1672 (_MPI_try_staged_settings)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode MPICXX"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-lygVg4"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-lygVg4"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_MPICXX"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-lygVg4'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_de053/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_de053.dir/build.make CMakeFiles/cmTC_de053.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-lygVg4'
+        Building CXX object CMakeFiles/cmTC_de053.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_de053.dir/test_mpi.cpp.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-lygVg4/test_mpi.cpp
+        Linking CXX executable cmTC_de053
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_de053.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_de053.dir/test_mpi.cpp.o -o cmTC_de053  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-lygVg4'
+        
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:99 (try_run)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:69 (find_package)"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6781b/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_6781b.dir/build.make CMakeFiles/cmTC_6781b.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_6781b.dir/detect_cuda_version.cc.o
+        /usr/bin/c++  -I/usr/local/cuda/include -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_6781b.dir/detect_cuda_version.cc.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/detect_cuda_version.cc
+        Linking CXX executable cmTC_6781b
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6781b.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_6781b.dir/detect_cuda_version.cc.o -o cmTC_6781b  -Wl,-rpath,/usr/local/cuda/lib64 /usr/local/cuda/lib64/libcudart.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        12.6
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:120 (try_run)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:180 (CUDA_DETECT_INSTALLED_GPUS)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/utils.cmake:344 (cuda_select_nvcc_arch_flags)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:331 (torch_cuda_get_nvcc_gencode_flag)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:69 (find_package)"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CUDA_FLAGS: ""
+      CMAKE_CUDA_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_1bdd9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_1bdd9.dir/build.make CMakeFiles/cmTC_1bdd9.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        Building CUDA object CMakeFiles/cmTC_1bdd9.dir/detect_cuda_compute_capabilities.cu.o
+        /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler   -std=c++17 -Xcompiler=-fPIE -MD -MT CMakeFiles/cmTC_1bdd9.dir/detect_cuda_compute_capabilities.cu.o -MF CMakeFiles/cmTC_1bdd9.dir/detect_cuda_compute_capabilities.cu.o.d -x cu -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/detect_cuda_compute_capabilities.cu -o CMakeFiles/cmTC_1bdd9.dir/detect_cuda_compute_capabilities.cu.o
+        Linking CUDA executable cmTC_1bdd9
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1bdd9.dir/link.txt --verbose=1
+        /usr/bin/g++ @CMakeFiles/cmTC_1bdd9.dir/objects1.rsp -o cmTC_1bdd9 @CMakeFiles/cmTC_1bdd9.dir/linkLibs.rsp -L"/usr/local/cuda/targets/x86_64-linux/lib/stubs" -L"/usr/local/cuda/targets/x86_64-linux/lib"
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        5.2 
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-qJcGHm"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-qJcGHm"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-qJcGHm'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_447d9/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_447d9.dir/build.make CMakeFiles/cmTC_447d9.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-qJcGHm'
+        Building C object CMakeFiles/cmTC_447d9.dir/test_mpi.c.o
+        /usr/bin/cc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -fPIE -o CMakeFiles/cmTC_447d9.dir/test_mpi.c.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-qJcGHm/test_mpi.c
+        Linking C executable cmTC_447d9
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_447d9.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_447d9.dir/test_mpi.c.o -o cmTC_447d9  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-qJcGHm'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-7clkxi"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-7clkxi"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-7clkxi'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b8917/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b8917.dir/build.make CMakeFiles/cmTC_b8917.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-7clkxi'
+        Building CXX object CMakeFiles/cmTC_b8917.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_b8917.dir/test_mpi.cpp.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-7clkxi/test_mpi.cpp
+        Linking CXX executable cmTC_b8917
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b8917.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_b8917.dir/test_mpi.cpp.o -o cmTC_b8917  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-7clkxi'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1672 (_MPI_try_staged_settings)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode MPICXX"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-pWhb2E"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-pWhb2E"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_MPICXX"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-pWhb2E'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_76b85/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_76b85.dir/build.make CMakeFiles/cmTC_76b85.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-pWhb2E'
+        Building CXX object CMakeFiles/cmTC_76b85.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_76b85.dir/test_mpi.cpp.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-pWhb2E/test_mpi.cpp
+        Linking CXX executable cmTC_76b85
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_76b85.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_76b85.dir/test_mpi.cpp.o -o cmTC_76b85  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-pWhb2E'
+        
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:99 (try_run)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:69 (find_package)"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f1c95/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f1c95.dir/build.make CMakeFiles/cmTC_f1c95.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_f1c95.dir/detect_cuda_version.cc.o
+        /usr/bin/c++  -I/usr/local/cuda/include -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_f1c95.dir/detect_cuda_version.cc.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/detect_cuda_version.cc
+        Linking CXX executable cmTC_f1c95
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f1c95.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_f1c95.dir/detect_cuda_version.cc.o -o cmTC_f1c95  -Wl,-rpath,/usr/local/cuda/lib64 /usr/local/cuda/lib64/libcudart.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        12.6
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:120 (try_run)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:180 (CUDA_DETECT_INSTALLED_GPUS)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/utils.cmake:344 (cuda_select_nvcc_arch_flags)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:331 (torch_cuda_get_nvcc_gencode_flag)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:69 (find_package)"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CUDA_FLAGS: ""
+      CMAKE_CUDA_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_703a0/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_703a0.dir/build.make CMakeFiles/cmTC_703a0.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        Building CUDA object CMakeFiles/cmTC_703a0.dir/detect_cuda_compute_capabilities.cu.o
+        /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler   -std=c++17 -Xcompiler=-fPIE -MD -MT CMakeFiles/cmTC_703a0.dir/detect_cuda_compute_capabilities.cu.o -MF CMakeFiles/cmTC_703a0.dir/detect_cuda_compute_capabilities.cu.o.d -x cu -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/detect_cuda_compute_capabilities.cu -o CMakeFiles/cmTC_703a0.dir/detect_cuda_compute_capabilities.cu.o
+        Linking CUDA executable cmTC_703a0
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_703a0.dir/link.txt --verbose=1
+        /usr/bin/g++ @CMakeFiles/cmTC_703a0.dir/objects1.rsp -o cmTC_703a0 @CMakeFiles/cmTC_703a0.dir/linkLibs.rsp -L"/usr/local/cuda/targets/x86_64-linux/lib/stubs" -L"/usr/local/cuda/targets/x86_64-linux/lib"
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        5.2 
+      exitCode: 0
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for C in mode normal"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-eRV69m"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-eRV69m"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_C_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-eRV69m'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a723c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a723c.dir/build.make CMakeFiles/cmTC_a723c.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-eRV69m'
+        Building C object CMakeFiles/cmTC_a723c.dir/test_mpi.c.o
+        /usr/bin/cc  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -fPIE -o CMakeFiles/cmTC_a723c.dir/test_mpi.c.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-eRV69m/test_mpi.c
+        Linking C executable cmTC_a723c
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a723c.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_a723c.dir/test_mpi.c.o -o cmTC_a723c  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-eRV69m'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1322 (_MPI_try_staged_settings)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1645 (_MPI_check_lang_works)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode normal"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-Tqtu7f"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-Tqtu7f"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_normal"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-Tqtu7f'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_65a7c/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_65a7c.dir/build.make CMakeFiles/cmTC_65a7c.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-Tqtu7f'
+        Building CXX object CMakeFiles/cmTC_65a7c.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_65a7c.dir/test_mpi.cpp.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-Tqtu7f/test_mpi.cpp
+        Linking CXX executable cmTC_65a7c
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_65a7c.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_65a7c.dir/test_mpi.cpp.o -o cmTC_65a7c  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-Tqtu7f'
+        
+      exitCode: 0
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1278 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindMPI.cmake:1672 (_MPI_try_staged_settings)"
+      - "CMakeLists.txt:68 (find_package)"
+    description: "The MPI test test_mpi for CXX in mode MPICXX"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-tJB0l5"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-tJB0l5"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "MPI_RESULT_CXX_test_mpi_MPICXX"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-tJB0l5'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_69381/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_69381.dir/build.make CMakeFiles/cmTC_69381.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-tJB0l5'
+        Building CXX object CMakeFiles/cmTC_69381.dir/test_mpi.cpp.o
+        /usr/bin/c++  -isystem /usr/lib/x86_64-linux-gnu/openmpi/include -isystem /usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_69381.dir/test_mpi.cpp.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-tJB0l5/test_mpi.cpp
+        Linking CXX executable cmTC_69381
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_69381.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_69381.dir/test_mpi.cpp.o -o cmTC_69381  -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi_cxx.so /usr/lib/x86_64-linux-gnu/openmpi/lib/libmpi.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeScratch/TryCompile-tJB0l5'
+        
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:99 (try_run)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:69 (find_package)"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "-DVERSION_INFO=\\\"0.1.0\\\""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8cdad/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_8cdad.dir/build.make CMakeFiles/cmTC_8cdad.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        Building CXX object CMakeFiles/cmTC_8cdad.dir/detect_cuda_version.cc.o
+        /usr/bin/c++  -I/usr/local/cuda/include -DVERSION_INFO=\\"0.1.0\\"  -std=gnu++17 -fPIE -o CMakeFiles/cmTC_8cdad.dir/detect_cuda_version.cc.o -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/detect_cuda_version.cc
+        Linking CXX executable cmTC_8cdad
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8cdad.dir/link.txt --verbose=1
+        /usr/bin/c++ -DVERSION_INFO=\\"0.1.0\\"  CMakeFiles/cmTC_8cdad.dir/detect_cuda_version.cc.o -o cmTC_8cdad  -Wl,-rpath,/usr/local/cuda/lib64 /usr/local/cuda/lib64/libcudart.so 
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        12.6
+      exitCode: 0
+  -
+    kind: "try_run-v1"
+    backtrace:
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:120 (try_run)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Modules_CUDA_fix/upstream/FindCUDA/select_compute_arch.cmake:180 (CUDA_DETECT_INSTALLED_GPUS)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/utils.cmake:344 (cuda_select_nvcc_arch_flags)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/cuda.cmake:331 (torch_cuda_get_nvcc_gencode_flag)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/Caffe2Config.cmake:86 (include)"
+      - "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Torch/TorchConfig.cmake:68 (find_package)"
+      - "CMakeLists.txt:69 (find_package)"
+    directories:
+      source: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+      binary: "/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp"
+    cmakeVariables:
+      CMAKE_CUDA_FLAGS: ""
+      CMAKE_CUDA_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2;/home/cc/.pyenv/versions/3.10.1/envs/training_gpu/lib/python3.10/site-packages/torch/share/cmake/Caffe2/public/../Modules_CUDA_fix"
+      CMAKE_POSITION_INDEPENDENT_CODE: "ON"
+    buildResult:
+      variable: "compile_result"
+      cached: true
+      stdout: |
+        Change Dir: '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_71f62/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_71f62.dir/build.make CMakeFiles/cmTC_71f62.dir/build
+        gmake[1]: Entering directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        Building CUDA object CMakeFiles/cmTC_71f62.dir/detect_cuda_compute_capabilities.cu.o
+        /usr/local/cuda/bin/nvcc -forward-unknown-to-host-compiler   -std=c++17 -Xcompiler=-fPIE -MD -MT CMakeFiles/cmTC_71f62.dir/detect_cuda_compute_capabilities.cu.o -MF CMakeFiles/cmTC_71f62.dir/detect_cuda_compute_capabilities.cu.o.d -x cu -c /home/cc/fastLoader/build/temp.linux-x86_64-3.10/detect_cuda_compute_capabilities.cu -o CMakeFiles/cmTC_71f62.dir/detect_cuda_compute_capabilities.cu.o
+        Linking CUDA executable cmTC_71f62
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_71f62.dir/link.txt --verbose=1
+        /usr/bin/g++ @CMakeFiles/cmTC_71f62.dir/objects1.rsp -o cmTC_71f62 @CMakeFiles/cmTC_71f62.dir/linkLibs.rsp -L"/usr/local/cuda/targets/x86_64-linux/lib/stubs" -L"/usr/local/cuda/targets/x86_64-linux/lib"
+        gmake[1]: Leaving directory '/home/cc/fastLoader/build/temp.linux-x86_64-3.10/CMakeFiles/CMakeTmp'
+        
+      exitCode: 0
+    runResult:
+      variable: "run_result"
+      cached: true
+      stdout: |
+        5.2 
+      exitCode: 0
+...

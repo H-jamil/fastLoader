@@ -1,2 +1,7 @@
 10.52.0.178:1
 10.52.2.75:1
+
+
+mpirun --mca mca_base_env_list_file ~/mpi-config.conf -H 10.52.0.178,10.52.2.75 -np 2 ~/run_distributed.sh examples/train_pytorch_profiler_dist.py --data_path=/mnt/cephfs/subset/train/ --batch_size=32 --num_workers=8 --num_epochs=2 --profile
+sudo sh -c "echo 3 > /proc/sys/vm/drop_caches"
+unset OMPI_MCA_btl_tcp_if_exclude

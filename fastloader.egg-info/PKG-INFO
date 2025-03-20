@@ -20,6 +20,7 @@ A high-performance data loading library with adaptive prefetching, providing Pyt
 - Seamless integration with PyTorch
 - Dynamic adjustment of worker threads at runtime
 - Distributed training support with MPI
+- Built-in C++ tensor preprocessing for optimal performance
 
 ## Installation
 
@@ -91,6 +92,44 @@ For distributed training, run with MPI:
 
 ```bash
 mpirun -np 2 python your_script.py
+```
+
+## C++ Preprocessing Feature
+
+FastLoader can perform tensor preprocessing directly in C++, which can significantly improve performance:
+
+```python
+# Initialize with preprocessing enabled
+prefetcher = Prefetcher()
+prefetcher.initialize(
+    data_path="/path/to/dataset",
+    batch_size=32,
+    num_workers=4,
+    prefetch_factor=2,
+    preprocess=True,  # Enable C++ preprocessing
+    preprocess_size=(224, 224)  # Set target size for image resizing
+)
+
+# Get preprocessed tensors
+data_list, labels_list = prefetcher.get_next_batch()
+
+# Since tensors are already preprocessed, just stack them
+data_batch = torch.stack(data_list) if data_list else None
+
+# Use the preprocessed batch for training
+```
+
+You can also enable/disable preprocessing at runtime:
+
+```python
+# Enable preprocessing with custom target size
+prefetcher.set_preprocessing(True, (256, 256))
+
+# Check if preprocessing is enabled
+is_enabled = prefetcher.is_preprocessing_enabled()
+
+# Get current target size
+target_size = prefetcher.get_target_size()
 ```
 
 ## License

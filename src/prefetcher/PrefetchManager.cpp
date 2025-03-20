@@ -12,13 +12,17 @@ PrefetchManager::PrefetchManager(StorageBackend* storage_backend,
                                DistributedManager* dist_manager,
                                size_t prefetch_factor,
                                int initial_num_workers,
-                               int batch_size)
+                               int batch_size,
+                               bool enable_preprocessing,
+                               std::pair<int, int> target_size)
     : storage_backend(storage_backend),
       dist_manager(dist_manager),
       prefetch_factor(prefetch_factor),
       num_workers(initial_num_workers),
       should_stop(false),
-      is_running(false) {
+      is_running(false),
+      preprocessing_enabled(enable_preprocessing),
+      preprocessing_target_size(target_size) {
     // Initialize buffer manager with appropriate size
     size_t max_sample_size = 0;
     for (int i = 0; i < storage_backend->get_num_samples(); ++i) {
@@ -140,6 +144,12 @@ void PrefetchManager::prefetch_worker() {
             for (int idx : batch_indices) {
                 try {
                     auto tensor = load_image(idx);
+                    
+                    // Apply preprocessing if enabled
+                    if (preprocessing_enabled) {
+                        tensor = preprocess_tensor(tensor);
+                    }
+                    
                     batch_data.push_back(std::move(tensor));
                     batch_labels.push_back(storage_backend->get_label_index(idx));
                 } catch (const std::exception& e) {
@@ -264,6 +274,57 @@ bool PrefetchManager::is_prefetching() const {
     return is_running;
 }
 
+void PrefetchManager::set_preprocessing(bool enable, std::pair<int, int> target_size) {
+    std::lock_guard<std::mutex> lock(preprocessing_mutex);
+    preprocessing_enabled = enable;
+    preprocessing_target_size = target_size;
+}
+
+bool PrefetchManager::is_preprocessing_enabled() const {
+    return preprocessing_enabled;
+}
+
+std::pair<int, int> PrefetchManager::get_target_size() const {
+    std::lock_guard<std::mutex> lock(preprocessing_mutex);
+    return preprocessing_target_size;
+}
+
+torch::Tensor PrefetchManager::preprocess_tensor(const torch::Tensor& tensor) {
+    try {
+        // This implements the equivalent of Python's preprocess_batch but for a single tensor
+        // First, ensure tensor has the right shape: [C, H, W]
+        auto tensor_sizes = tensor.sizes();
+        if (tensor_sizes.size() != 3) {
+            throw std::runtime_error("Tensor must have 3 dimensions [C, H, W]");
+        }
+        
+        // Get current target size (thread-safe)
+        std::pair<int, int> target_size;
+        {
+            std::lock_guard<std::mutex> lock(preprocessing_mutex);
+            target_size = preprocessing_target_size;
+        }
+        
+        // Add batch dimension [1, C, H, W] for interpolate
+        auto batched_tensor = tensor.unsqueeze(0);
+        
+        // Resize using bilinear interpolation
+        auto options = torch::nn::functional::InterpolateFuncOptions()
+                          .size(std::vector<int64_t>{target_size.first, target_size.second})
+                          .mode(torch::kBilinear)
+                          .align_corners(false);
+                          
+        auto resized = torch::nn::functional::interpolate(batched_tensor, options);
+        
+        // Remove batch dimension and return [C, H, W]
+        return resized.squeeze(0);
+    } catch (const std::exception& e) {
+        std::cerr << "Error in preprocess_tensor: " << e.what() << std::endl;
+        // Return the original tensor if preprocessing fails
+        return tensor;
+    }
+}
+
 void PrefetchManager::debug_info() const {
     std::cout << "PrefetchManager Debug Info:" << std::endl;
     std::cout << " - Queue size: " << get_queue_size() << std::endl;
@@ -271,4 +332,12 @@ void PrefetchManager::debug_info() const {
     std::cout << " - Number of workers: " << num_workers << std::endl;
     std::cout << " - Is running: " << (is_running ? "true" : "false") << std::endl;
     std::cout << " - Should stop: " << (should_stop ? "true" : "false") << std::endl;
+    std::cout << " - Preprocessing enabled: " << (preprocessing_enabled ? "true" : "false") << std::endl;
+    
+    std::pair<int, int> target_size;
+    {
+        std::lock_guard<std::mutex> lock(preprocessing_mutex);
+        target_size = preprocessing_target_size;
+    }
+    std::cout << " - Target size: " << target_size.first << "x" << target_size.second << std::endl;
 }

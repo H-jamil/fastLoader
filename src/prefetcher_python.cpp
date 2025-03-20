@@ -37,6 +37,8 @@ private:
     bool we_initialized_mpi;
     int rank;
     int world_size;
+    bool preprocessing_enabled;
+    std::pair<int, int> target_size;
 
 public:
     PyTorchPrefetcher() : 
@@ -47,11 +49,16 @@ public:
         initialized(false), 
         we_initialized_mpi(false),
         rank(-1),
-        world_size(0) {}
+        world_size(0),
+        preprocessing_enabled(false),
+        target_size({224, 224}) {}
     
     void initialize(const std::string& data_path, int batch_size, 
-                    int num_workers, int prefetch_factor) {
+                    int num_workers, int prefetch_factor,
+                    bool preprocess = false, const std::pair<int, int>& preprocess_size = {224, 224}) {
         this->batch_size = batch_size;
+        this->preprocessing_enabled = preprocess;
+        this->target_size = preprocess_size;
         
         // Ensure MPI is initialized
         we_initialized_mpi = ensure_mpi_initialized();
@@ -67,9 +74,10 @@ public:
         int global_num_samples = backend->get_num_samples();
         dist_manager = new DistributedManager(global_num_samples, batch_size);
         
-        // Initialize prefetch manager
+        // Initialize prefetch manager with preprocessing options
         prefetch_manager = new PrefetchManager(
-            backend, dist_manager, prefetch_factor, num_workers, batch_size);
+            backend, dist_manager, prefetch_factor, num_workers, batch_size,
+            preprocessing_enabled, target_size);
         
         initialized = true;
     }
@@ -148,6 +156,24 @@ public:
         prefetch_manager->debug_info();
     }
     
+    // Add a method to configure preprocessing at runtime
+    void set_preprocessing(bool enable, const std::pair<int, int>& size = {224, 224}) {
+        if (!initialized) throw std::runtime_error("Prefetcher not initialized");
+        preprocessing_enabled = enable;
+        target_size = size;
+        prefetch_manager->set_preprocessing(enable, size);
+    }
+    
+    bool is_preprocessing_enabled() const {
+        if (!initialized) throw std::runtime_error("Prefetcher not initialized");
+        return prefetch_manager->is_preprocessing_enabled();
+    }
+    
+    std::pair<int, int> get_target_size() const {
+        if (!initialized) throw std::runtime_error("Prefetcher not initialized");
+        return prefetch_manager->get_target_size();
+    }
+    
     ~PyTorchPrefetcher() {
         if (prefetch_manager) {
             prefetch_manager->stop_prefetching();
@@ -175,7 +201,8 @@ PYBIND11_MODULE(fastloader, m) {
         .def("initialize", &PyTorchPrefetcher::initialize, 
              py::arg("data_path"), py::arg("batch_size")=32, 
              py::arg("num_workers")=4, py::arg("prefetch_factor")=2,
-             "Initialize the prefetcher with dataset path and parameters")
+             py::arg("preprocess")=false, py::arg("preprocess_size")=std::pair<int, int>{224, 224},
+             "Initialize the prefetcher with dataset path and parameters, optionally enabling preprocessing")
         .def("get_next_batch", &PyTorchPrefetcher::get_next_batch,
              "Get the next batch of data, returns (data, labels) tuple")
         .def("set_num_workers", &PyTorchPrefetcher::set_num_workers,
@@ -187,6 +214,13 @@ PYBIND11_MODULE(fastloader, m) {
              "Stop the prefetching process")
         .def("reset_epoch", &PyTorchPrefetcher::reset_epoch,
              "Reset for a new epoch")
+        .def("set_preprocessing", &PyTorchPrefetcher::set_preprocessing,
+             py::arg("enable"), py::arg("size")=std::pair<int, int>{224, 224},
+             "Enable or disable preprocessing and set target size")
+        .def("is_preprocessing_enabled", &PyTorchPrefetcher::is_preprocessing_enabled,
+             "Check if preprocessing is enabled")
+        .def("get_target_size", &PyTorchPrefetcher::get_target_size,
+             "Get the current preprocessing target size")
         .def("get_rank", &PyTorchPrefetcher::get_rank,
              "Get the MPI rank of this process")
         .def("get_world_size", &PyTorchPrefetcher::get_world_size,

@@ -12,6 +12,10 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torchvision.models import resnet50, ResNet50_Weights
 from fastloader import Prefetcher
 
+# Additional imports for profiling
+from torch.profiler import profile, record_function, ProfilerActivity
+from torch.profiler import tensorboard_trace_handler, schedule
+
 def print_tensor_info(tensor, name):
     """Print information about a PyTorch tensor"""
     if tensor is None:
@@ -87,6 +91,15 @@ def main():
                         help='Max gradient norm for clipping')
     parser.add_argument('--comm_timeout', type=float, default=60.0,
                         help='Communication timeout in seconds')
+    # Profiler arguments
+    parser.add_argument('--profile', action='store_true',
+                        help='Enable PyTorch profiling')
+    parser.add_argument('--profile_folder', type=str, default='./profiler_logs',
+                        help='Folder to save profiler results')
+    parser.add_argument('--profile_epochs', type=int, default=1,
+                        help='Number of epochs to profile')
+    parser.add_argument('--profile_batches', type=int, default=50,
+                        help='Number of batches to profile')
     args = parser.parse_args()
     
     # Set NCCL environment variables
@@ -177,6 +190,8 @@ def main():
         print(f"Device: {device}")
         print(f"Socket buffer size: {args.socket_bs}")
         print(f"Start time: {time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(start_time))}")
+        if args.profile:
+            print(f"Profiling enabled. Results will be saved to {args.profile_folder}")
     
     # Training metrics
     total_train_loss = 0
@@ -190,6 +205,32 @@ def main():
                 if torch.isnan(param.grad).any() or torch.isinf(param.grad).any():
                     return False
         return True
+    
+    # Create profiler if enabled
+    profiler = None
+    if args.profile:  # Only profile rank 0 for simplicity
+        # Create directory for profiler results
+        os.makedirs(args.profile_folder, exist_ok=True)
+        
+        # Define profiler schedule
+        prof_schedule = schedule(
+            wait=10,  # Skip first 10 batches to avoid warmup overhead
+            warmup=5,  # Warmup for 5 batches
+            active=args.profile_batches,  # Profile specified number of batches
+            repeat=1,  # Profile one iteration
+            skip_first=10,  # Skip the first iterations for more stable profiling
+        )
+        
+        # Create the profiler
+        profiler = profile(
+            activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA],
+            schedule=prof_schedule,
+            on_trace_ready=tensorboard_trace_handler(args.profile_folder),
+            record_shapes=True,
+            profile_memory=True,
+            with_stack=True,
+            with_flops=True
+        )
     
     # Run training for specified epochs
     for ep in range(args.num_epochs):
@@ -223,6 +264,18 @@ def main():
         epoch_loss = 0.0
         epoch_correct = 0
         
+        # Create CUDA events for timing (for the first epoch)
+        if ep == 0 and torch.cuda.is_available():
+            data_wait_start = torch.cuda.Event(enable_timing=True)
+            data_wait_end = torch.cuda.Event(enable_timing=True)
+            compute_start = torch.cuda.Event(enable_timing=True)
+            compute_end = torch.cuda.Event(enable_timing=True)
+            
+            # Track stall times for later analysis
+            data_wait_times = []
+            compute_times = []
+            total_times = []
+        
         # Keep track of communication errors
         comm_errors = 0
         
@@ -251,52 +304,90 @@ def main():
                 if total_batches % 10 == 0:
                     safe_barrier(timeout=5.0)
                 
-                # Get next batch - now returns a list of tensors
-                data_list, labels_list = prefetcher.get_next_batch()
+                # Start data wait timing (for first epoch timing)
+                if ep == 0 and torch.cuda.is_available():
+                    data_wait_start.record()
                 
-                # Check for end of epoch
-                if data_list is None:
-                    # If we reach the end before getting enough batches, continue with dummy batches
-                    # to ensure all processes do the same number of optimization steps
-                    if total_batches < max_batches_per_epoch:
-                        print(f"Rank {rank}: Reached end of data at batch {total_batches}/{max_batches_per_epoch}. Using dummy batches to complete epoch.")
-                        # Create dummy batch of zeros
-                        dummy_batch_size = args.batch_size
-                        data_batch = torch.zeros((dummy_batch_size, 3, target_size[0], target_size[1]), device=device)
-                        labels_batch = torch.zeros(dummy_batch_size, dtype=torch.long, device=device)
+                # Start a named range for profiling data loading
+                with record_function("data_loading"):
+                    # Get next batch - now returns a list of tensors
+                    data_list, labels_list = prefetcher.get_next_batch()
+                    
+                    # Check for end of epoch
+                    if data_list is None:
+                        # If we reach the end before getting enough batches, continue with dummy batches
+                        # to ensure all processes do the same number of optimization steps
+                        if total_batches < max_batches_per_epoch:
+                            print(f"Rank {rank}: Reached end of data at batch {total_batches}/{max_batches_per_epoch}. Using dummy batches to complete epoch.")
+                            # Create dummy batch of zeros
+                            dummy_batch_size = args.batch_size
+                            data_batch = torch.zeros((dummy_batch_size, 3, target_size[0], target_size[1]), device=device)
+                            labels_batch = torch.zeros(dummy_batch_size, dtype=torch.long, device=device)
+                        else:
+                            break
                     else:
-                        break
-                else:
-                    # Tensors are already preprocessed in C++, just stack them
-                    data_batch = torch.stack(data_list)
+                        # Tensors are already preprocessed in C++, just stack them
+                        data_batch = torch.stack(data_list)
+                        
+                        # Convert labels list to tensor
+                        labels_batch = torch.tensor(labels_list, dtype=torch.long)
+                        
+                        # Move tensors to the correct device
+                        data_batch = data_batch.to(device)
+                        labels_batch = labels_batch.to(device)
+                
+                # End data wait timing and start compute timing
+                if ep == 0 and torch.cuda.is_available():
+                    data_wait_end.record()
+                    compute_start.record()
+                
+                # Training step with profiling
+                with record_function("training_step"):
+                    # Zero the parameter gradients
+                    optimizer.zero_grad()
                     
-                    # Convert labels list to tensor
-                    labels_batch = torch.tensor(labels_list, dtype=torch.long)
+                    # Forward pass
+                    with record_function("forward"):
+                        outputs = model(data_batch)
+                        loss = criterion(outputs, labels_batch)
                     
-                    # Move tensors to the correct device
-                    data_batch = data_batch.to(device)
-                    labels_batch = labels_batch.to(device)
+                    # Backward pass
+                    with record_function("backward"):
+                        loss.backward()
+                    
+                    # Optimization
+                    with record_function("optimizer"):
+                        # Gradient clipping
+                        torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
+                        
+                        # Check for NaN or inf in gradients
+                        if not check_gradients():
+                            print(f"Warning: Rank {rank} detected NaN or inf in gradients at batch {total_batches}. Skipping update.")
+                            optimizer.zero_grad()  # Clear bad gradients
+                        else:
+                            # Optimize
+                            optimizer.step()
                 
-                # Zero the parameter gradients
-                optimizer.zero_grad()
-                
-                # Forward pass
-                outputs = model(data_batch)
-                loss = criterion(outputs, labels_batch)
-                
-                # Backward pass
-                loss.backward()
-                
-                # Gradient clipping to avoid exploding gradients
-                torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
-                
-                # Check for NaN or inf in gradients
-                if not check_gradients():
-                    print(f"Warning: Rank {rank} detected NaN or inf in gradients at batch {total_batches}. Skipping update.")
-                    optimizer.zero_grad()  # Clear bad gradients
-                else:
-                    # Optimize
-                    optimizer.step()
+                # End compute timing
+                if ep == 0 and torch.cuda.is_available():
+                    compute_end.record()
+                    
+                    # Synchronize to get accurate times
+                    torch.cuda.synchronize()
+                    
+                    # Calculate times in milliseconds
+                    data_wait_time = data_wait_start.elapsed_time(data_wait_end)
+                    compute_time = compute_start.elapsed_time(compute_end)
+                    total_time = data_wait_time + compute_time
+                    
+                    # Store times
+                    data_wait_times.append(data_wait_time)
+                    compute_times.append(compute_time)
+                    total_times.append(total_time)
+                    
+                    # Log times for the first few batches
+                    if len(data_wait_times) <= 5 and rank == 0:
+                        print(f"Batch {total_batches} timing - Data loading: {data_wait_time:.2f}ms, Computing: {compute_time:.2f}ms")
                 
                 # Calculate accuracy
                 _, predicted = torch.max(outputs.data, 1)
@@ -304,7 +395,7 @@ def main():
                 
                 # Update counters
                 total_batches += 1
-                batch_size = len(data_list)
+                batch_size = len(data_list) if data_list is not None else dummy_batch_size
                 total_images += batch_size
                 epoch_loss += loss.item() * batch_size
                 epoch_correct += batch_correct
@@ -320,6 +411,10 @@ def main():
                 if total_batches == 1 and rank == 0:
                     print_tensor_info(data_batch, "First image batch")
                     print_tensor_info(labels_batch, "First label batch")
+                
+                # Step the profiler
+                if profiler is not None and ep < args.profile_epochs:
+                    profiler.step()
                 
             except Exception as e:
                 print(f"Error processing batch at rank {rank}: {e}")
@@ -337,6 +432,33 @@ def main():
         
         # Stop prefetching
         prefetcher.stop_prefetching()
+        
+        # Print GPU stall time analysis after first epoch
+        if ep == 0 and torch.cuda.is_available() and rank == 0 and len(data_wait_times) > 0:
+            # Calculate statistics
+            avg_data_wait = sum(data_wait_times) / len(data_wait_times)
+            avg_compute = sum(compute_times) / len(compute_times)
+            avg_total = sum(total_times) / len(total_times)
+            
+            # Calculate stall percentage (data wait time relative to total processing time)
+            stall_percentage = (avg_data_wait / avg_total) * 100
+            
+            print("\n=== GPU Stall Time Analysis ===")
+            print(f"Average data loading time: {avg_data_wait:.2f}ms")
+            print(f"Average compute time: {avg_compute:.2f}ms")
+            print(f"Average total time per batch: {avg_total:.2f}ms")
+            print(f"GPU stall percentage: {stall_percentage:.2f}%")
+            print(f"Theoretical maximum throughput: {1000/avg_total:.2f} batches/second")
+            
+            # Save timing data to a CSV file
+            if len(data_wait_times) > 0 and args.profile:
+                import csv
+                with open(f"{args.profile_folder}/timing_data.csv", "w", newline="") as f:
+                    writer = csv.writer(f)
+                    writer.writerow(["Batch", "Data_Wait_Time_ms", "Compute_Time_ms", "Total_Time_ms", "Stall_Percentage"])
+                    for i in range(len(data_wait_times)):
+                        stall_pct = (data_wait_times[i] / total_times[i]) * 100
+                        writer.writerow([i, data_wait_times[i], compute_times[i], total_times[i], stall_pct])
         
         # Wait for all processes to complete their epoch with a timeout
         safe_barrier(timeout=30.0)
@@ -367,6 +489,10 @@ def main():
         # Barrier to make sure all processes complete the epoch
         safe_barrier(timeout=30.0)
     
+    # Cleanup profiler
+    if profiler is not None:
+        profiler.stop()
+    
     # Record end time
     end_time = time.time()
     total_duration = end_time - start_time
@@ -375,13 +501,17 @@ def main():
     overall_avg_loss = total_train_loss / total_train_samples if total_train_samples > 0 else 0
     overall_avg_acc = 100 * total_train_correct / total_train_samples if total_train_samples > 0 else 0
     
-    if rank == 0:
-        print("\n=== Distributed Training Complete ===")
-        print(f"Overall Training Loss: {overall_avg_loss:.4f}")
-        print(f"Overall Training Accuracy: {overall_avg_acc:.2f}%")
-        print(f"Start time: {start_time}")
-        print(f"End time: {end_time}")
-        print(f"Total duration: {total_duration:.2f} seconds ({total_duration/60:.2f} minutes)")
+    # if rank == 0:
+    print("\n=== Distributed Training Complete ===")
+    print(f"Overall Training Loss: {overall_avg_loss:.4f}")
+    print(f"Overall Training Accuracy: {overall_avg_acc:.2f}%")
+    print(f"Start time: {start_time}")
+    print(f"End time: {end_time}")
+    print(f"Total duration: {total_duration:.2f} seconds ({total_duration/60:.2f} minutes)")
+    
+    if args.profile:
+        print(f"Profiling results saved to {args.profile_folder}")
+        print(f"View with: tensorboard --logdir={args.profile_folder}")
 
     # Clean up
     cleanup_distributed()

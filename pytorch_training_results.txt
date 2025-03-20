@@ -1,0 +1,264 @@
+Using Python: /home/cc/.pyenv/shims/python
+Using Python: /home/cc/.pyenv/shims/python
+Distributed environment:
+RANK=1, WORLD_SIZE=2, LOCAL_RANK=0
+MASTER_ADDR=10.52.0.178, MASTER_PORT=29500
+Distributed environment:
+RANK=0, WORLD_SIZE=2, LOCAL_RANK=0
+MASTER_ADDR=10.52.0.178, MASTER_PORT=29500
+Found 9248 samples across 1000 classes in /mnt/cephfs/subset/train/
+Found 9248 samples across 1000 classes in /mnt/cephfs/subset/train/
+Initialized PyTorch distributed process group for rank 1 of 2
+Initialized PyTorch distributed process group for rank 0 of 2
+gpum40-1:675760:675760 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker,lo
+gpum40-1:675760:675760 [0] NCCL INFO Bootstrap : Using eno1:10.52.0.178<0>
+gpum40-1:675760:675760 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpum40-1:675760:675760 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpum40-1:675760:675760 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gpum40-1:675760:675760 [0] NCCL INFO cudaDriverVersion 12060
+NCCL version 2.21.5+cuda12.4
+gpum40-1:675760:675760 [0] NCCL INFO Comm config Blocking set to 1
+gpum40-2:236540:236540 [0] NCCL INFO cudaDriverVersion 12060
+gpum40-2:236540:236540 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker,lo
+gpum40-2:236540:236540 [0] NCCL INFO Bootstrap : Using eno1:10.52.2.75<0>
+gpum40-2:236540:236540 [0] NCCL INFO NET/Plugin: No plugin found (libnccl-net.so)
+gpum40-2:236540:236540 [0] NCCL INFO NET/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-net.so
+gpum40-2:236540:236540 [0] NCCL INFO NET/Plugin: Using internal network plugin.
+gpum40-2:236540:236540 [0] NCCL INFO Comm config Blocking set to 1
+gpum40-1:675760:677151 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker,lo
+gpum40-1:675760:677151 [0] NCCL INFO NET/IB : No device found.
+gpum40-1:675760:677151 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker,lo
+gpum40-1:675760:677151 [0] NCCL INFO NET/Socket : Using [0]eno1:10.52.0.178<0>
+gpum40-1:675760:677151 [0] NCCL INFO Using non-device net plugin version 0
+gpum40-1:675760:677151 [0] NCCL INFO Using network Socket
+gpum40-2:236540:237947 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker,lo
+gpum40-2:236540:237947 [0] NCCL INFO NET/IB : No device found.
+gpum40-2:236540:237947 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ^docker,lo
+gpum40-2:236540:237947 [0] NCCL INFO NET/Socket : Using [0]eno1:10.52.2.75<0>
+gpum40-2:236540:237947 [0] NCCL INFO Using non-device net plugin version 0
+gpum40-2:236540:237947 [0] NCCL INFO Using network Socket
+gpum40-1:675760:677151 [0] NCCL INFO ncclCommInitRank comm 0x5a1ceca25e10 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 3000 commId 0x29ea1cf332eebefa - Init START
+gpum40-2:236540:237947 [0] NCCL INFO ncclCommInitRank comm 0x62e30b811950 rank 1 nranks 2 cudaDev 0 nvmlDev 0 busId 3000 commId 0x29ea1cf332eebefa - Init START
+gpum40-2:236540:237947 [0] NCCL INFO Setting affinity for GPU 0 to 01000001
+gpum40-1:675760:677151 [0] NCCL INFO Setting affinity for GPU 0 to 01000001
+gpum40-1:675760:677151 [0] NCCL INFO comm 0x5a1ceca25e10 rank 0 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+gpum40-1:675760:677151 [0] NCCL INFO Channel 00/02 :    0   1
+gpum40-1:675760:677151 [0] NCCL INFO Channel 01/02 :    0   1
+gpum40-1:675760:677151 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1
+gpum40-1:675760:677151 [0] NCCL INFO P2P Chunksize set to 131072
+gpum40-2:236540:237947 [0] NCCL INFO comm 0x62e30b811950 rank 1 nRanks 2 nNodes 2 localRanks 1 localRank 0 MNNVL 0
+gpum40-2:236540:237947 [0] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1
+gpum40-2:236540:237947 [0] NCCL INFO P2P Chunksize set to 131072
+gpum40-2:236540:237963 [0] NCCL INFO NCCL_NSOCKS_PERTHREAD set by environment to 4.
+gpum40-2:236540:237963 [0] NCCL INFO NCCL_SOCKET_NTHREADS set by environment to 4.
+gpum40-2:236540:237963 [0] NCCL INFO NET/Socket: Using 4 threads and 4 sockets per thread
+gpum40-2:236540:237947 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[0] [receive] via NET/Socket/0
+gpum40-2:236540:237963 [0] NCCL INFO NET/Socket: Using 4 threads and 4 sockets per thread
+gpum40-1:675760:677168 [0] NCCL INFO NCCL_NSOCKS_PERTHREAD set by environment to 4.
+gpum40-1:675760:677168 [0] NCCL INFO NCCL_SOCKET_NTHREADS set by environment to 4.
+gpum40-1:675760:677168 [0] NCCL INFO NET/Socket: Using 4 threads and 4 sockets per thread
+gpum40-2:236540:237947 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[0] [receive] via NET/Socket/0
+gpum40-1:675760:677151 [0] NCCL INFO Channel 00/0 : 1[0] -> 0[0] [receive] via NET/Socket/0
+gpum40-2:236540:237947 [0] NCCL INFO Channel 00/0 : 1[0] -> 0[0] [send] via NET/Socket/0
+gpum40-1:675760:677168 [0] NCCL INFO NET/Socket: Using 4 threads and 4 sockets per thread
+gpum40-1:675760:677151 [0] NCCL INFO Channel 01/0 : 1[0] -> 0[0] [receive] via NET/Socket/0
+gpum40-2:236540:237947 [0] NCCL INFO Channel 01/0 : 1[0] -> 0[0] [send] via NET/Socket/0
+gpum40-1:675760:677151 [0] NCCL INFO Channel 00/0 : 0[0] -> 1[0] [send] via NET/Socket/0
+gpum40-1:675760:677151 [0] NCCL INFO Channel 01/0 : 0[0] -> 1[0] [send] via NET/Socket/0
+gpum40-1:675760:677151 [0] NCCL INFO Connected all rings
+gpum40-1:675760:677151 [0] NCCL INFO Connected all trees
+gpum40-1:675760:677151 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gpum40-1:675760:677151 [0] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpum40-2:236540:237947 [0] NCCL INFO Connected all rings
+gpum40-2:236540:237947 [0] NCCL INFO Connected all trees
+gpum40-2:236540:237947 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gpum40-2:236540:237947 [0] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gpum40-2:236540:237947 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpum40-2:236540:237947 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpum40-2:236540:237947 [0] NCCL INFO ncclCommInitRank comm 0x62e30b811950 rank 1 nranks 2 cudaDev 0 nvmlDev 0 busId 3000 commId 0x29ea1cf332eebefa - Init COMPLETE
+gpum40-1:675760:677151 [0] NCCL INFO TUNER/Plugin: Plugin load returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory : when loading libnccl-tuner.so
+gpum40-1:675760:677151 [0] NCCL INFO TUNER/Plugin: Using internal tuner plugin.
+gpum40-1:675760:677151 [0] NCCL INFO ncclCommInitRank comm 0x5a1ceca25e10 rank 0 nranks 2 cudaDev 0 nvmlDev 0 busId 3000 commId 0x29ea1cf332eebefa - Init COMPLETE
+=== Distributed ResNet50 Training with PyTorch ===
+Dataset scan time: 1.10 seconds
+Global number of samples: 9248
+Number of classes: 1000
+Running with 2 processes
+Target image size: (224, 224)
+Device: cuda:0
+Socket buffer size: 131072
+Start time: 2025-03-18 14:46:02
+
+=== Starting Epoch 1/5 ===
+Processing exactly 145 batches per process for this epoch
+First image batch: shape=torch.Size([32, 3, 224, 224]), dtype=torch.float32, device=cuda:0
+First label batch: shape=torch.Size([32]), dtype=torch.int64, device=cuda:0
+Rank 0: Batch 10: Processed 320 images, Loss: 6.9217, Acc: 0.00%
+Rank 0: Batch 20: Processed 640 images, Loss: 6.9220, Acc: 0.00%
+Rank 0: Batch 30: Processed 960 images, Loss: 6.9215, Acc: 0.00%
+Rank 0: Batch 40: Processed 1280 images, Loss: 6.9157, Acc: 0.08%
+Rank 0: Batch 50: Processed 1600 images, Loss: 6.9143, Acc: 0.06%
+Rank 0: Batch 60: Processed 1920 images, Loss: 6.9136, Acc: 0.05%
+Rank 0: Batch 70: Processed 2240 images, Loss: 6.9099, Acc: 0.13%
+Rank 0: Batch 80: Processed 2560 images, Loss: 6.9083, Acc: 0.12%
+Rank 0: Batch 90: Processed 2880 images, Loss: 6.9064, Acc: 0.10%
+Rank 0: Batch 100: Processed 3200 images, Loss: 6.9050, Acc: 0.12%
+Rank 0: Batch 110: Processed 3520 images, Loss: 6.9040, Acc: 0.11%
+Rank 0: Batch 120: Processed 3840 images, Loss: 6.9028, Acc: 0.16%
+Rank 0: Batch 130: Processed 4160 images, Loss: 6.9020, Acc: 0.14%
+Rank 0: Batch 140: Processed 4480 images, Loss: 6.9016, Acc: 0.13%
+Node 0 Epoch 1 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.9011
+  - Accuracy: 0.13%
+  - Epoch time: 75.99 seconds
+  - Images/second: 60.85
+Node 1 Epoch 1 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.9035
+  - Accuracy: 0.13%
+  - Epoch time: 75.98 seconds
+  - Images/second: 60.86
+
+=== Starting Epoch 2/5 ===
+Processing exactly 145 batches per process for this epoch
+First image batch: shape=torch.Size([32, 3, 224, 224]), dtype=torch.float32, device=cuda:0
+First label batch: shape=torch.Size([32]), dtype=torch.int64, device=cuda:0
+Rank 0: Batch 10: Processed 320 images, Loss: 6.8558, Acc: 0.31%
+Rank 0: Batch 20: Processed 640 images, Loss: 6.8643, Acc: 0.16%
+Rank 0: Batch 30: Processed 960 images, Loss: 6.8655, Acc: 0.10%
+Rank 0: Batch 40: Processed 1280 images, Loss: 6.8614, Acc: 0.16%
+Rank 0: Batch 50: Processed 1600 images, Loss: 6.8596, Acc: 0.25%
+Rank 0: Batch 60: Processed 1920 images, Loss: 6.8588, Acc: 0.36%
+Rank 0: Batch 70: Processed 2240 images, Loss: 6.8558, Acc: 0.45%
+Rank 0: Batch 80: Processed 2560 images, Loss: 6.8542, Acc: 0.55%
+Rank 0: Batch 90: Processed 2880 images, Loss: 6.8528, Acc: 0.59%
+Rank 0: Batch 100: Processed 3200 images, Loss: 6.8516, Acc: 0.59%
+Rank 0: Batch 110: Processed 3520 images, Loss: 6.8501, Acc: 0.57%
+Rank 0: Batch 120: Processed 3840 images, Loss: 6.8494, Acc: 0.52%
+Rank 0: Batch 130: Processed 4160 images, Loss: 6.8502, Acc: 0.53%
+Rank 0: Batch 140: Processed 4480 images, Loss: 6.8482, Acc: 0.56%
+Node 0 Epoch 2 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.8479
+  - Accuracy: 0.54%
+  - Epoch time: 69.00 seconds
+  - Images/second: 67.02
+Node 1 Epoch 2 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.8496
+  - Accuracy: 0.58%
+  - Epoch time: 69.00 seconds
+  - Images/second: 67.02
+
+=== Starting Epoch 3/5 ===
+Processing exactly 145 batches per process for this epoch
+First image batch: shape=torch.Size([32, 3, 224, 224]), dtype=torch.float32, device=cuda:0
+First label batch: shape=torch.Size([32]), dtype=torch.int64, device=cuda:0
+Rank 0: Batch 10: Processed 320 images, Loss: 6.7994, Acc: 0.94%
+Rank 0: Batch 20: Processed 640 images, Loss: 6.8073, Acc: 0.47%
+Rank 0: Batch 30: Processed 960 images, Loss: 6.8010, Acc: 0.73%
+Rank 0: Batch 40: Processed 1280 images, Loss: 6.8041, Acc: 0.62%
+Rank 0: Batch 50: Processed 1600 images, Loss: 6.8026, Acc: 0.81%
+Rank 0: Batch 60: Processed 1920 images, Loss: 6.8018, Acc: 0.83%
+Rank 0: Batch 70: Processed 2240 images, Loss: 6.8001, Acc: 0.76%
+Rank 0: Batch 80: Processed 2560 images, Loss: 6.7993, Acc: 0.86%
+Rank 0: Batch 90: Processed 2880 images, Loss: 6.7986, Acc: 0.90%
+Rank 0: Batch 100: Processed 3200 images, Loss: 6.7994, Acc: 0.91%
+Rank 0: Batch 110: Processed 3520 images, Loss: 6.7992, Acc: 0.94%
+Rank 0: Batch 120: Processed 3840 images, Loss: 6.7985, Acc: 0.94%
+Rank 0: Batch 130: Processed 4160 images, Loss: 6.7976, Acc: 0.89%
+Rank 0: Batch 140: Processed 4480 images, Loss: 6.7946, Acc: 1.05%
+Node 0 Epoch 3 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.7939
+  - Accuracy: 1.06%
+  - Epoch time: 68.72 seconds
+  - Images/second: 67.29
+Node 1 Epoch 3 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.7928
+  - Accuracy: 1.34%
+  - Epoch time: 68.72 seconds
+  - Images/second: 67.29
+
+=== Starting Epoch 4/5 ===
+Processing exactly 145 batches per process for this epoch
+First image batch: shape=torch.Size([32, 3, 224, 224]), dtype=torch.float32, device=cuda:0
+First label batch: shape=torch.Size([32]), dtype=torch.int64, device=cuda:0
+Rank 0: Batch 10: Processed 320 images, Loss: 6.7489, Acc: 3.12%
+Rank 0: Batch 20: Processed 640 images, Loss: 6.7479, Acc: 2.81%
+Rank 0: Batch 30: Processed 960 images, Loss: 6.7466, Acc: 2.40%
+Rank 0: Batch 40: Processed 1280 images, Loss: 6.7473, Acc: 2.34%
+Rank 0: Batch 50: Processed 1600 images, Loss: 6.7458, Acc: 2.38%
+Rank 0: Batch 60: Processed 1920 images, Loss: 6.7444, Acc: 2.34%
+Rank 0: Batch 70: Processed 2240 images, Loss: 6.7424, Acc: 2.46%
+Rank 0: Batch 80: Processed 2560 images, Loss: 6.7427, Acc: 2.46%
+Rank 0: Batch 90: Processed 2880 images, Loss: 6.7437, Acc: 2.40%
+Rank 0: Batch 100: Processed 3200 images, Loss: 6.7429, Acc: 2.50%
+Rank 0: Batch 110: Processed 3520 images, Loss: 6.7381, Acc: 2.84%
+Rank 0: Batch 120: Processed 3840 images, Loss: 6.7364, Acc: 2.97%
+Rank 0: Batch 130: Processed 4160 images, Loss: 6.7319, Acc: 3.08%
+Rank 0: Batch 140: Processed 4480 images, Loss: 6.7309, Acc: 3.08%
+Node 0 Epoch 4 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.7299
+  - Accuracy: 3.14%
+  - Epoch time: 69.05 seconds
+  - Images/second: 66.96
+Node 1 Epoch 4 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.7268
+  - Accuracy: 3.78%
+  - Epoch time: 69.05 seconds
+  - Images/second: 66.96
+
+=== Starting Epoch 5/5 ===
+Processing exactly 145 batches per process for this epoch
+First image batch: shape=torch.Size([32, 3, 224, 224]), dtype=torch.float32, device=cuda:0
+First label batch: shape=torch.Size([32]), dtype=torch.int64, device=cuda:0
+Rank 0: Batch 10: Processed 320 images, Loss: 6.6784, Acc: 5.94%
+Rank 0: Batch 20: Processed 640 images, Loss: 6.6786, Acc: 5.16%
+Rank 0: Batch 30: Processed 960 images, Loss: 6.6703, Acc: 5.94%
+Rank 0: Batch 40: Processed 1280 images, Loss: 6.6664, Acc: 5.62%
+Rank 0: Batch 50: Processed 1600 images, Loss: 6.6668, Acc: 5.75%
+Rank 0: Batch 60: Processed 1920 images, Loss: 6.6662, Acc: 5.83%
+Rank 0: Batch 70: Processed 2240 images, Loss: 6.6658, Acc: 6.07%
+Rank 0: Batch 80: Processed 2560 images, Loss: 6.6674, Acc: 5.94%
+Rank 0: Batch 90: Processed 2880 images, Loss: 6.6686, Acc: 5.90%
+Rank 0: Batch 100: Processed 3200 images, Loss: 6.6639, Acc: 6.16%
+Rank 0: Batch 110: Processed 3520 images, Loss: 6.6634, Acc: 6.36%
+Rank 0: Batch 120: Processed 3840 images, Loss: 6.6616, Acc: 6.30%
+Rank 0: Batch 130: Processed 4160 images, Loss: 6.6586, Acc: 6.49%
+Rank 0: Batch 140: Processed 4480 images, Loss: 6.6561, Acc: 6.52%
+Node 0 Epoch 5 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.6553
+  - Accuracy: 6.51%
+  - Epoch time: 68.52 seconds
+  - Images/second: 67.48
+Node 1 Epoch 5 Performance:
+  - Total batches: 145
+  - Total images: 4624
+  - Loss: 6.6529
+  - Accuracy: 6.83%
+  - Epoch time: 68.52 seconds
+  - Images/second: 67.48
+
+=== Distributed Training Complete ===
+Overall Training Loss: 6.7856
+Overall Training Accuracy: 2.28%
+Start time: 1742309162.985381
+End time: 1742309519.4870489
+Total duration: 356.50 seconds (5.94 minutes)
+gpum40-2:236540:236540 [0] NCCL INFO comm 0x62e30b811950 rank 1 nranks 2 cudaDev 0 busId 3000 - Destroy COMPLETE
+gpum40-1:675760:675760 [0] NCCL INFO comm 0x5a1ceca25e10 rank 0 nranks 2 cudaDev 0 busId 3000 - Destroy COMPLETE
